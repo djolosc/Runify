@@ -1,28 +1,59 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
-import { WebView } from 'react-native-webview';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  TouchableOpacity,
+  FlatList,
+} from 'react-native';
 
 export default function App() {
   return (
-    <WebView
-      style={styles.map}
-      originWhitelist={['*']}
-      source={{
-        uri: 'https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3',
-      }}
-    />
+    <SafeAreaView style={styles.container}>
+      <View>
+        <Text>How long would you like to run today?</Text>
+      </View>
+      <View>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.text}>5 km</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.text}>7 km</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.text}>10 km</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.text}>Just a walk</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
+  button: {
     justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    backgroundColor: 'yellow',
+    height: 60,
+    width: 200,
+    margin: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    elevation: 2,
   },
-  map: {
+
+  text: {
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+
+  container: {
     justifyContent: 'center',
   },
 });
