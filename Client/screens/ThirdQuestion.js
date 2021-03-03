@@ -6,15 +6,13 @@ import CustomButton from '../components/CustomButton';
 const BUTTONS = [
   {
     text: "LET'S RUN",
-    id: 20,
   },
   {
     text: 'So, so...',
-    id: 30,
   },
 ];
 
-const ThirdScreen = ({ navigation, route }) => {
+const ThirdQuestion = ({ navigation, preferences, setPreferences }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.textContainer}>
@@ -23,11 +21,18 @@ const ThirdScreen = ({ navigation, route }) => {
       <View>
         <FlatList
           data={BUTTONS}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.text}
           renderItem={({ item }) => (
             <CustomButton
               text={item.text}
-              handlePress={() => navigation.navigate('FinalScreen')}
+              handlePress={() => {
+                setPreferences((preferences) => ({
+                  ...preferences,
+                  mood: item.text,
+                }));
+
+                navigation.navigate('FinalScreen');
+              }}
             />
           )}
         />
@@ -54,4 +59,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ThirdScreen;
+export default ThirdQuestion;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
 
 import CustomButton from '../components/CustomButton';
@@ -6,23 +6,23 @@ import CustomButton from '../components/CustomButton';
 const BUTTONS = [
   {
     text: '5 km',
-    id: 5,
+    km: 5,
   },
   {
     text: '7 km',
-    id: 7,
+    km: 7,
   },
   {
     text: '10 km',
-    id: 10,
+    km: 10,
   },
   {
     text: 'Just a walk',
-    id: 999,
+    km: 0,
   },
 ];
 
-const FirstScreen = ({ navigation, route }) => {
+const FirstQuestion = ({ navigation, preferences, setPreferences }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.textContainer}>
@@ -33,10 +33,17 @@ const FirstScreen = ({ navigation, route }) => {
       <View>
         <FlatList
           data={BUTTONS}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.text}
           renderItem={({ item }) => (
             <CustomButton
-              handlePress={() => navigation.navigate('SecondScreen')}
+              handlePress={() => {
+                setPreferences((preferences) => ({
+                  ...preferences,
+                  km: item.km,
+                }));
+
+                navigation.navigate('SecondQuestion');
+              }}
               text={item.text}
             />
           )}
@@ -64,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FirstScreen;
+export default FirstQuestion;

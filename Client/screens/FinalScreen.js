@@ -3,19 +3,12 @@ import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
 
 import CustomButton from '../components/CustomButton';
 
-const BUTTONS = [
-  {
-    text: 'Home',
-    id: 21,
-  },
-];
-
-const FinalScreen = ({ navigation, route }) => {
+const FinalScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <CustomButton
         text={'Home'}
-        handlePress={() => navigation.navigate('FirstScreen')}
+        handlePress={() => navigation.navigate('FirstQuestion')}
       />
     </SafeAreaView>
   );

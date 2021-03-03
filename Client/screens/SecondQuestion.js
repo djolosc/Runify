@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
 
 import CustomButton from '../components/CustomButton';
@@ -6,23 +6,27 @@ import CustomButton from '../components/CustomButton';
 const BUTTONS = [
   {
     text: 'River Run',
-    id: 2,
+
+    scenery: 'River',
   },
   {
     text: 'Forest Run',
-    id: 4,
+
+    scenery: 'Forest',
   },
   {
     text: 'Scenic Run',
-    id: 6,
+
+    scenery: 'Scenic',
   },
   {
     text: 'City Run',
-    id: 8,
+
+    scenery: 'City',
   },
 ];
 
-const SecondScreen = ({ navigation, route }) => {
+const SecondQuestion = ({ navigation, preferences, setPreferences }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.textContainer}>
@@ -31,11 +35,18 @@ const SecondScreen = ({ navigation, route }) => {
       <View>
         <FlatList
           data={BUTTONS}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.text}
           renderItem={({ item }) => (
             <CustomButton
               text={item.text}
-              handlePress={() => navigation.navigate('ThirdScreen')}
+              handlePress={() => {
+                setPreferences((preferences) => ({
+                  ...preferences,
+                  scenery: item.scenery,
+                }));
+
+                navigation.navigate('ThirdQuestion');
+              }}
             />
           )}
         />
@@ -62,4 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SecondScreen;
+export default SecondQuestion;
