@@ -15,8 +15,8 @@ exports.getAllRoutes = async (req, res) => {
 exports.postRoute = async (req, res) => {
   try {
     const { km, scenery, route } = req.body;
-    const event = await Event.create({ km, scenery, route });
-    res.send(event);
+    const preference = await Preference.create({ km, scenery, route });
+    res.send(preference);
     res.status(200);
   } catch (error) {
     console.log(error); //eslint-disable-line no-console
