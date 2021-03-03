@@ -5,30 +5,28 @@ import CustomButton from '../components/CustomButton';
 
 const BUTTONS = [
   {
-    text: '5 km',
-    id: 5,
+    text: 'River Run',
+    id: 2,
   },
   {
-    text: '7 km',
-    id: 7,
+    text: 'Forest Run',
+    id: 4,
   },
   {
-    text: '10 km',
-    id: 10,
+    text: 'Scenic Run',
+    id: 6,
   },
   {
-    text: 'Just a walk',
-    id: 999,
+    text: 'City Run',
+    id: 8,
   },
 ];
 
-const FirstScreen = ({ navigation, route }) => {
+const SecondScreen = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={styles.headerText}>
-          How long would you like to run today?
-        </Text>
+        <Text style={styles.headerText}>Where would you like to run?</Text>
       </View>
       <View>
         <FlatList
@@ -36,8 +34,8 @@ const FirstScreen = ({ navigation, route }) => {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <CustomButton
-              handlePress={() => navigation.navigate('SecondScreen')}
               text={item.text}
+              handlePress={() => navigation.navigate('ThirdScreen')}
             />
           )}
         />
@@ -64,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FirstScreen;
+export default SecondScreen;

@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  TouchableOpacity,
-} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-const CustomButton = ({ text }) => {
+const CustomButton = ({ text, handlePress }) => {
   return (
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity style={styles.button} onPress={handlePress}>
       <Text style={styles.buttonText}>{text}</Text>
     </TouchableOpacity>
   );
