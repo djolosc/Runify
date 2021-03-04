@@ -9,16 +9,25 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
-const initialState = { km: 0, scenery: '', mood: '' };
+const initialStatePreference = { km: 0, scenery: '', mood: '' };
+// const initalStateRoute = {
+//   km: 0,
+//   scenery: '',
+//   routeName: '',
+//   description: '',
+//   coordinates: [],
+//   initialState: {},
+// };
 
+// PROBABLY TO REMOVE
 export default function App() {
-  const [preferences, setPreferences] = useState(initialState);
-  const [routeName, setRouteName] = useState('');
+  const [preferences, setPreferences] = useState(initialStatePreference);
+  const [runningRoute, setRunningRoute] = useState({});
 
   useEffect(() => {
     console.log(preferences);
-    console.log('route', routeName);
-  }, [preferences, routeName]);
+    console.log('route', runningRoute);
+  }, [preferences, runningRoute]);
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -45,13 +54,13 @@ export default function App() {
             <ThirdQuestion
               preferences={preferences}
               setPreferences={setPreferences}
-              setRouteName={setRouteName}
+              setRunningRoute={setRunningRoute}
               {...props}
             />
           )}
         </Stack.Screen>
         <Stack.Screen name="FinalScreen" options={{ headerShown: false }}>
-          {(props) => <FinalScreen routeName={routeName} {...props} />}
+          {(props) => <FinalScreen runningRoute={runningRoute} {...props} />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
