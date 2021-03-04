@@ -16,43 +16,59 @@ const FinalScreen = ({ navigation, routeName }) => {
       <View>
         <MapView
           initialRegion={{
-            latitude: 44.80456679556077,
-            longitude: 20.432008598585142,
-            latitudeDelta: 0.045,
-            longitudeDelta: 0.045,
+            latitude: 44.81827387956986,
+            longitude: 20.440823787877783,
+            latitudeDelta: 0.015,
+            longitudeDelta: 0.015,
           }}
           style={{ width: 300, height: 300 }}
           provider={MapView.PROVIDER_GOOGLE}
         >
           <Polyline
             coordinates={[
-              { latitude: 44.78875773961665, longitude: 20.416642355124797 },
-              { latitude: 44.788421826560615, longitude: 20.417848652527287 },
-              { latitude: 44.78882885140137, longitude: 20.41952453726285 },
-              { latitude: 44.79050622726397, longitude: 20.42310810933113 },
-              { latitude: 44.79333456245305, longitude: 20.427566859722507 },
-              { latitude: 44.797110787393926, longitude: 20.43415808581139 },
-              { latitude: 44.800210696958125, longitude: 20.4399835502073 },
-              { latitude: 44.80166049430508, longitude: 20.4422658711096 },
-              { latitude: 44.80304482156024, longitude: 20.44399792867607 },
-              { latitude: 44.804089946006165, longitude: 20.445060301632623 },
-              { latitude: 44.805817989130304, longitude: 20.44659007662769 },
-              { latitude: 44.80819308477778, longitude: 20.448499567276432 },
-              { latitude: 44.80845780222557, longitude: 20.448675283193044 },
-              { latitude: 44.8097967264408, longitude: 20.449212613405006 },
-              { latitude: 44.8103902107358, longitude: 20.449402341504626 },
-              { latitude: 44.8118506524524, longitude: 20.449588862130767 },
-              { latitude: 44.81338728357341, longitude: 20.449887746011967 },
-              { latitude: 44.81397124211035, longitude: 20.449929111315566 },
-              { latitude: 44.81481048871818, longitude: 20.44982569805392 },
-              { latitude: 44.815139141417184, longitude: 20.44978846928004 },
-              { latitude: 44.81525358253764, longitude: 20.44961887153198 },
-              { latitude: 44.81583458781742, longitude: 20.44957336969711 },
-              { latitude: 44.816826391367, longitude: 20.449345860523604 },
-              { latitude: 44.81871605270367, longitude: 20.448663333005605 },
-              { latitude: 44.82047513691558, longitude: 20.44760649875285 },
-              { latitude: 44.82151593144574, longitude: 20.446806639271355 },
-              { latitude: 44.82213478361549, longitude: 20.446265332069856 },
+              { latitude: 44.81514486569136, longitude: 20.439300516951377 },
+              { latitude: 44.8154496900962, longitude: 20.439908029269787 },
+              { latitude: 44.81572998697745, longitude: 20.44040194172378 },
+              { latitude: 44.81584560905505, longitude: 20.43971046428758 },
+              { latitude: 44.815891157078255, longitude: 20.43962156004586 },
+              { latitude: 44.8163816719711, longitude: 20.439478325434205 },
+              { latitude: 44.816938751681974, longitude: 20.439285699577148 },
+              { latitude: 44.81714196180918, longitude: 20.43915728233911 },
+              { latitude: 44.81782136816983, longitude: 20.438976066867756 },
+              { latitude: 44.818007057368526, longitude: 20.438951371245057 },
+              { latitude: 44.81820676017897, longitude: 20.43900076249045 },
+              { latitude: 44.818224277946086, longitude: 20.439005701614906 },
+              { latitude: 44.81860966726224, longitude: 20.43919338834742 },
+              { latitude: 44.81876732579443, longitude: 20.43925759696549 },
+              { latitude: 44.81915971848111, longitude: 20.439287231712726 },
+              { latitude: 44.819468025138264, longitude: 20.43932674470905 },
+              { latitude: 44.819898951011304, longitude: 20.43949961406654 },
+              { latitude: 44.82001106127635, longitude: 20.439549005311942 },
+              { latitude: 44.82060313999792, longitude: 20.439860170157953 },
+              { latitude: 44.82071875229319, longitude: 20.44001328301869 },
+              { latitude: 44.82072575909154, longitude: 20.440433108604584 },
+              { latitude: 44.81987096478447, longitude: 20.441137215779957 },
+              { latitude: 44.81963731989877, longitude: 20.441511521672094 },
+              { latitude: 44.81964085997882, longitude: 20.441516512412537 },
+              { latitude: 44.81881163220096, longitude: 20.44238502532586 },
+              { latitude: 44.81874082951992, longitude: 20.442409979052258 },
+              { latitude: 44.818716048561015, longitude: 20.442489830976744 },
+              { latitude: 44.81861692461888, longitude: 20.442564692155944 },
+              { latitude: 44.81850009975406, longitude: 20.442769312712425 },
+              { latitude: 44.81794756365081, longitude: 20.443098913017803 },
+              { latitude: 44.81750857904352, longitude: 20.443563052326034 },
+              { latitude: 44.81750503882169, longitude: 20.443553070833357 },
+              { latitude: 44.8170271082077, longitude: 20.443742719153995 },
+              { latitude: 44.81691382037028, longitude: 20.443812589587917 },
+              { latitude: 44.81672264663992, longitude: 20.443987265672718 },
+              { latitude: 44.81604677369898, longitude: 20.44441662745661 },
+              { latitude: 44.8160644752044, longitude: 20.44425692360765 },
+              { latitude: 44.81576354887311, longitude: 20.44364805268348 },
+              { latitude: 44.815512185675004, longitude: 20.44290443163675 },
+              { latitude: 44.81558546519122, longitude: 20.441476796801094 },
+              { latitude: 44.81574778628473, longitude: 20.440397935086423 },
+              { latitude: 44.815142388389376, longitude: 20.439304961870093 },
+              { latitude: 44.81514486569136, longitude: 20.439300516951377 },
             ]}
             strokeWidth={3}
             strokeColor={'#0000FF'}
@@ -60,8 +76,8 @@ const FinalScreen = ({ navigation, routeName }) => {
           />
           <Marker
             coordinate={{
-              latitude: 44.78875773961665,
-              longitude: 20.416642355124797,
+              latitude: 44.81514486569136,
+              longitude: 20.439300516951377,
             }}
           />
         </MapView>
