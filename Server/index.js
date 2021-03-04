@@ -12,11 +12,11 @@ app.use(router);
 (async function () {
   try {
     await connection;
-    console.log('Database is connected 🥳'); // eslint-disable-line no-console
+    console.log('Database is connected 🥳');
     app.listen(PORT, () => {
-      console.log(`Listening on http:localhost/${PORT} 🚀`); // eslint-disable-line no-console
+      console.log(`Listening on http://localhost/${PORT} 🚀`);
     });
   } catch (error) {
-    console.log(error); //eslint-disable-line no-console
+    console.log(error);
   }
 })();
