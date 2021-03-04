@@ -9,16 +9,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
+const initialState = { km: 0, scenery: '', mood: '' };
 
 export default function App() {
-  const [preferences, setPreferences] = useState({
-    km: 0,
-    scenery: '',
-    mood: '',
-  });
+  const [preferences, setPreferences] = useState(initialState);
+  const [routeName, setRouteName] = useState('');
+
   useEffect(() => {
     console.log(preferences);
-  }, [preferences]);
+    console.log('route', routeName);
+  }, [preferences, routeName]);
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -45,15 +45,14 @@ export default function App() {
             <ThirdQuestion
               preferences={preferences}
               setPreferences={setPreferences}
+              setRouteName={setRouteName}
               {...props}
             />
           )}
         </Stack.Screen>
-        <Stack.Screen
-          name="FinalScreen"
-          component={FinalScreen}
-          options={{ headerShown: false }}
-        />
+        <Stack.Screen name="FinalScreen" options={{ headerShown: false }}>
+          {(props) => <FinalScreen routeName={routeName} {...props} />}
+        </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

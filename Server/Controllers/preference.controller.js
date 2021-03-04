@@ -26,7 +26,8 @@ exports.getRoute = async (req, res) => {
   try {
     const { km, scenery } = req.params;
     const route = await Preference.findOne({ km: km, scenery: scenery });
-    res.send(route.route);
+    const routeName = route.route;
+    res.send({ routeName });
     res.status(200);
   } catch (error) {
     console.log(error);
