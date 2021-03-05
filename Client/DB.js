@@ -492,6 +492,7 @@ const db = [
     km: 5,
     scenery: 'City',
     routeName: 'Bulevar Zorana Đinđića',
+    description: '',
     coordinates: [
       { latitude: 44.8116548640539, longitude: 20.431661044402485 },
       { latitude: 44.81896627894438, longitude: 20.414758003865884 },
@@ -510,6 +511,7 @@ const db = [
     km: 7,
     scenery: 'City',
     routeName: 'NBG Blokovi',
+    description: '',
     coordinates: [
       { latitude: 44.80357509181753, longitude: 20.387984252246348 },
       { latitude: 44.80466082761235, longitude: 20.3871570956864 },
@@ -538,6 +540,7 @@ const db = [
     km: 10,
     scenery: 'City',
     routeName: 'Crveni Krst',
+    description: '',
     coordinates: [
       { latitude: 44.79144111583479, longitude: 20.469210700653633 },
       { latitude: 44.79007479988447, longitude: 20.469999735233372 },

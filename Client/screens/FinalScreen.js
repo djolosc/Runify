@@ -9,12 +9,14 @@ import {
   Image,
   ActivityIndicator,
 } from 'react-native';
+import Modal from 'react-native-modal';
 import MapView, { Polyline, Marker } from 'react-native-maps';
 import CustomButton from '../components/CustomButton';
 import PlaylistDB from '../PlaylistDB';
 
 const FinalScreen = ({ navigation, runningRoute, currentMood }) => {
   const [playlist, setPlaylist] = useState({});
+  const [isModalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     getPlaylist(currentMood);
@@ -35,7 +37,10 @@ const FinalScreen = ({ navigation, runningRoute, currentMood }) => {
       />
       <Text style={styles.headerText}>{runningRoute.routeName}</Text>
       <Text>Enjoy your {runningRoute.km}km run</Text>
-
+      <CustomButton
+        text={'Click here for more details'}
+        handlePress={() => setModalVisible(true)}
+      />
       <View>
         <MapView
           initialRegion={runningRoute.initialRegion}
@@ -61,6 +66,17 @@ const FinalScreen = ({ navigation, runningRoute, currentMood }) => {
           <Text style={styles.playlistText}>Here's your Spotify playlist</Text>
         </TouchableOpacity>
       </View>
+      <Modal
+        isVisible={isModalVisible}
+        onSwipeComplete={() => setModalVisible(false)}
+        swipeDirection="down"
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalView}>
+            <Text>{runningRoute.description}</Text>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -89,6 +105,31 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     fontSize: 30,
     marginLeft: 5,
+  },
+
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+  },
+
+  modalView: {
+    height: 400,
+    width: 300,
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });
 
