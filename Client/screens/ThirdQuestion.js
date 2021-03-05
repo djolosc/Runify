@@ -6,17 +6,23 @@ import CustomButton from '../components/CustomButton';
 
 const BUTTONS = [
   {
-    text: "LET'S RUN",
+    text: 'I got dumped!!!',
   },
   {
-    text: 'So, so...',
+    text: "I'm annoyed by my parents",
+  },
+  {
+    text: "I'm super stressed",
+  },
+  {
+    text: "I don't have sex",
   },
 ];
 
 const ThirdQuestion = ({
   navigation,
   preferences,
-  setPreferences,
+  setCurrentMood,
   setRunningRoute,
 }) => {
   const getRoute = (body) => {
@@ -44,7 +50,7 @@ const ThirdQuestion = ({
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={styles.headerText}>ENERGIZED?</Text>
+        <Text style={styles.headerText}>Reason to run?</Text>
       </View>
       <View>
         <FlatList
@@ -54,11 +60,7 @@ const ThirdQuestion = ({
             <CustomButton
               text={item.text}
               handlePress={() => {
-                setPreferences((preferences) => ({
-                  ...preferences,
-                  mood: item.text,
-                }));
-
+                setCurrentMood(item.text);
                 getRoute(preferences);
                 navigation.navigate('FinalScreen');
               }}
