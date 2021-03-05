@@ -13,20 +13,21 @@ const FinalScreen = ({ navigation, runningRoute }) => {
         text={'Home'}
         handlePress={() => navigation.navigate('FirstQuestion')}
       />
-      <Text style={styles.headerText}>{runningRoute[0].routeName}</Text>
+      <Text style={styles.headerText}>{runningRoute.routeName}</Text>
+      <Text>Enjoy your {runningRoute.km}km run</Text>
       <View>
         <MapView
-          initialRegion={runningRoute[0].initialRegion}
+          initialRegion={runningRoute.initialRegion}
           style={{ width: 300, height: 300 }}
           provider={MapView.PROVIDER_GOOGLE}
         >
           <Polyline
-            coordinates={runningRoute[0].coordinates}
+            coordinates={runningRoute.coordinates}
             strokeWidth={3}
             strokeColor={'#0000FF'}
             geodesic={true}
           />
-          <Marker coordinate={runningRoute[0].coordinates[0]} />
+          <Marker coordinate={runningRoute.coordinates[0]} />
         </MapView>
       </View>
     </SafeAreaView>

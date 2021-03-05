@@ -26,7 +26,7 @@ const ThirdQuestion = ({
       return route.km === km && route.scenery === scenery;
     });
     console.log('selecetedRoute', selectedRoute);
-    setRunningRoute(selectedRoute);
+    setRunningRoute(selectedRoute[0]);
   };
 
   // const getRoute = (body) => {
