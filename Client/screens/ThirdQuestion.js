@@ -1,7 +1,8 @@
 import IP from '../config.js';
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
-import db from '../DB';
+import db from '../DB/DB';
+import PlaylistDB from '../DB/PlaylistDB';
 import CustomButton from '../components/CustomButton';
 
 const BUTTONS = [
@@ -22,8 +23,8 @@ const BUTTONS = [
 const ThirdQuestion = ({
   navigation,
   preferences,
-  setCurrentMood,
   setRunningRoute,
+  setPlaylist,
 }) => {
   const getRoute = (body) => {
     const { km, scenery } = body;
@@ -31,8 +32,15 @@ const ThirdQuestion = ({
     const selectedRoute = db.filter((route) => {
       return route.km === km && route.scenery === scenery;
     });
-    console.log('selecetedRoute', selectedRoute);
     setRunningRoute(selectedRoute[0]);
+  };
+
+  const getPlaylist = (currentMood) => {
+    console.log('currentMood', currentMood);
+    const selectedPlaylist = PlaylistDB.filter((playlist) => {
+      return playlist.name === currentMood;
+    });
+    setPlaylist(selectedPlaylist[0]);
   };
 
   // const getRoute = (body) => {
@@ -60,8 +68,8 @@ const ThirdQuestion = ({
             <CustomButton
               text={item.text}
               handlePress={() => {
-                setCurrentMood(item.text);
                 getRoute(preferences);
+                getPlaylist(item.text);
                 navigation.navigate('FinalScreen');
               }}
             />

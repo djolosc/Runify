@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
 
 import CustomButton from '../components/CustomButton';
@@ -26,7 +26,7 @@ const BUTTONS = [
   },
 ];
 
-const SecondQuestion = ({ navigation, preferences, setPreferences }) => {
+const SecondQuestion = ({ navigation, setPreferences }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.textContainer}>

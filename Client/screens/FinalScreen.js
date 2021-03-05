@@ -7,36 +7,58 @@ import {
   TouchableOpacity,
   Linking,
   Image,
-  ActivityIndicator,
+  TextInput,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import Modal from 'react-native-modal';
 import MapView, { Polyline, Marker } from 'react-native-maps';
 import CustomButton from '../components/CustomButton';
-import PlaylistDB from '../PlaylistDB';
 
-const FinalScreen = ({ navigation, runningRoute, currentMood }) => {
-  const [playlist, setPlaylist] = useState({});
+const FinalScreen = ({
+  navigation,
+  runningRoute,
+  playlist,
+  setTotalKilometers,
+}) => {
   const [isModalVisible, setModalVisible] = useState(false);
-
-  useEffect(() => {
-    getPlaylist(currentMood);
-  }, [currentMood]);
-
-  const getPlaylist = (currentMood) => {
-    const selectedPlaylist = PlaylistDB.filter((playlist) => {
-      return playlist.name === currentMood;
-    });
-    setPlaylist(selectedPlaylist[0]);
-  };
+  const [inputValue, setInputValue] = useState('');
 
   return (
     <SafeAreaView style={styles.container}>
       <CustomButton
         text={'Home'}
-        handlePress={() => navigation.navigate('FirstQuestion')}
+        handlePress={() => navigation.navigate('Home')}
       />
+
       <Text style={styles.headerText}>{runningRoute.routeName}</Text>
       <Text>Enjoy your {runningRoute.km}km run</Text>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={{ flexDirection: 'row' }}>
+          <TextInput
+            style={{
+              width: 40,
+              height: 30,
+              borderColor: 'gray',
+              borderWidth: 1,
+            }}
+            onChangeText={(number) => {
+              setInputValue(parseFloat(number));
+            }}
+            value={inputValue}
+            keyboardType="decimal-pad"
+          />
+          <CustomButton
+            text={'Submit'}
+            handlePress={() => {
+              setTotalKilometers((km) => {
+                return (km = km + inputValue);
+              });
+              setInputValue('');
+            }}
+          />
+        </View>
+      </TouchableWithoutFeedback>
       <CustomButton
         text={'Click here for more details'}
         handlePress={() => setModalVisible(true)}
@@ -53,7 +75,7 @@ const FinalScreen = ({ navigation, runningRoute, currentMood }) => {
             strokeColor={'#0000FF'}
             geodesic={true}
           />
-          <Marker coordinate={runningRoute.coordinates[0]} />
+          <Marker coordinate={runningRoute.coordinates[0]} title={'start'} />
         </MapView>
 
         <TouchableOpacity
