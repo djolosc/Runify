@@ -6,7 +6,7 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import Svg, { Circle, Rect } from 'react-native-svg';
+
 import CustomButton from '../components/CustomButton';
 import IP from '../config';
 
@@ -26,6 +26,8 @@ import Sleet from '../svg/sleet.svg';
 import Snow from '../svg/snow.svg';
 import Sunny from '../svg/sunny.svg';
 import Tstorms from '../svg/tstorms.svg';
+import PartlySunny from '../svg/partlysunny.svg';
+import PartlyCloudy from '../svg/partlycloudy.svg';
 
 export default function Home({ totalKilometers, navigation }) {
   const [currentWeather, setCurrentWeather] = useState({});
@@ -42,11 +44,28 @@ export default function Home({ totalKilometers, navigation }) {
 
   useEffect(() => {
     getWeather();
+    console.log('currentWeather', currentWeather);
   }, []);
 
   const weather = {
-    Sunny: Sunny,
+    ChanceFlurries: ChanceFlurries,
+    ChanceSnows: ChanceSnows,
+    ChanceSleet: ChanceSleet,
+    ChanceTstorms: ChanceTstorms,
     Clear: Clear,
+    Cloudy: Cloudy,
+    Flurries: Flurries,
+    Fog: Fog,
+    Hazy: Hazy,
+    MostlyCloudy: MostlyCloudy,
+    MostlySunny: MostlySunny,
+    Rain: Rain,
+    Sleet: Sleet,
+    Snow: Snow,
+    Sunny: Sunny,
+    Tstorms: Tstorms,
+    PartlySunny: PartlySunny,
+    PartlyCloudy: PartlyCloudy,
   };
 
   if (currentWeather.weather) {
@@ -63,13 +82,20 @@ export default function Home({ totalKilometers, navigation }) {
           handlePress={() => navigation.navigate('FirstQuestion')}
         />
         <View style={styles.icon}>
+          <Text>Belgrade</Text>
           <WeatherTag />
           <Text>{Math.round(currentWeather.main.temp)}</Text>
+          <Text>{currentWeather.weather[0].description}</Text>
         </View>
       </SafeAreaView>
     );
   } else {
-    return <ActivityIndicator />;
+    return (
+      <CustomButton
+        text={"Let's run"}
+        handlePress={() => navigation.navigate('FirstQuestion')}
+      />
+    );
   }
 }
 const styles = StyleSheet.create({

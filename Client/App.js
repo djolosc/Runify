@@ -5,6 +5,7 @@ import FirstQuestion from './screens/FirstQuestion';
 import SecondQuestion from './screens/SecondQuestion';
 import ThirdQuestion from './screens/ThirdQuestion';
 import FinalScreen from './screens/FinalScreen';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -24,54 +25,56 @@ export default function App() {
     console.log('playlist', playlist);
   }, [preferences, runningRoute, playlist]);
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" options={{ headerShown: false }}>
-          {(props) => (
-            <Home
-              preferences={preferences}
-              setPreferences={setPreferences}
-              totalKilometers={totalKilometers}
-              {...props}
-            />
-          )}
-        </Stack.Screen>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" options={{ headerShown: false }}>
+            {(props) => (
+              <Home
+                preferences={preferences}
+                setPreferences={setPreferences}
+                totalKilometers={totalKilometers}
+                {...props}
+              />
+            )}
+          </Stack.Screen>
 
-        <Stack.Screen name="FirstQuestion" options={{ headerShown: false }}>
-          {(props) => (
-            <FirstQuestion
-              preferences={preferences}
-              setPreferences={setPreferences}
-              {...props}
-            />
-          )}
-        </Stack.Screen>
-        <Stack.Screen name="SecondQuestion" options={{ headerShown: false }}>
-          {(props) => (
-            <SecondQuestion setPreferences={setPreferences} {...props} />
-          )}
-        </Stack.Screen>
-        <Stack.Screen name="ThirdQuestion" options={{ headerShown: false }}>
-          {(props) => (
-            <ThirdQuestion
-              preferences={preferences}
-              setRunningRoute={setRunningRoute}
-              setPlaylist={setPlaylist}
-              {...props}
-            />
-          )}
-        </Stack.Screen>
-        <Stack.Screen name="FinalScreen" options={{ headerShown: false }}>
-          {(props) => (
-            <FinalScreen
-              runningRoute={runningRoute}
-              playlist={playlist}
-              setTotalKilometers={setTotalKilometers}
-              {...props}
-            />
-          )}
-        </Stack.Screen>
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Screen name="FirstQuestion" options={{ headerShown: false }}>
+            {(props) => (
+              <FirstQuestion
+                preferences={preferences}
+                setPreferences={setPreferences}
+                {...props}
+              />
+            )}
+          </Stack.Screen>
+          <Stack.Screen name="SecondQuestion" options={{ headerShown: false }}>
+            {(props) => (
+              <SecondQuestion setPreferences={setPreferences} {...props} />
+            )}
+          </Stack.Screen>
+          <Stack.Screen name="ThirdQuestion" options={{ headerShown: false }}>
+            {(props) => (
+              <ThirdQuestion
+                preferences={preferences}
+                setRunningRoute={setRunningRoute}
+                setPlaylist={setPlaylist}
+                {...props}
+              />
+            )}
+          </Stack.Screen>
+          <Stack.Screen name="FinalScreen" options={{ headerShown: false }}>
+            {(props) => (
+              <FinalScreen
+                runningRoute={runningRoute}
+                playlist={playlist}
+                setTotalKilometers={setTotalKilometers}
+                {...props}
+              />
+            )}
+          </Stack.Screen>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
