@@ -55,6 +55,7 @@ const FinalScreen = ({
                 return (km = km + inputValue);
               });
               setInputValue('');
+              Keyboard.dismiss;
             }}
           />
         </View>
