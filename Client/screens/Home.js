@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   View,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 
 import CustomButton from '../components/CustomButton';
@@ -74,33 +75,115 @@ export default function Home({ totalKilometers, navigation }) {
     console.log(currentWeather);
 
     return (
-      <SafeAreaView>
-        <Text>Hej Đorđe, how are you today?</Text>
-        <Text>Your total kilometers: {totalKilometers}</Text>
-        <CustomButton
-          text={"Let's run"}
-          handlePress={() => navigation.navigate('FirstQuestion')}
-        />
-        <View style={styles.icon}>
-          <Text>Belgrade</Text>
-          <WeatherTag />
-          <Text>{Math.round(currentWeather.main.temp)}</Text>
-          <Text>{currentWeather.weather[0].description}</Text>
+      <SafeAreaView
+        style={{
+          flex: 1,
+        }}
+      >
+        <View style={styles.weatherWidget}>
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: 'normal',
+              marginLeft: 10,
+              marginTop: 7,
+              color: 'white',
+            }}
+          >
+            Belgrade
+          </Text>
+          <Text style={{ fontSize: 45, marginLeft: 11, color: 'white' }}>
+            {Math.round(currentWeather.main.temp)}º
+          </Text>
+          <WeatherTag style={{ height: 30, width: 30, marginLeft: 7 }} />
+          <Text style={{ marginLeft: 11, color: 'white' }}>
+            {currentWeather.weather[0].description}
+          </Text>
+        </View>
+
+        <View style={{ marginTop: 15 }}>
+          <Text style={{ fontWeight: '800', fontSize: 40, marginLeft: 15 }}>
+            Welcome back, Đorđe!
+          </Text>
+          <Text
+            style={{
+              fontWeight: '500',
+              fontSize: 20,
+              marginLeft: 15,
+              marginTop: 5,
+            }}
+          >
+            So far, you have totally run {totalKilometers}km
+          </Text>
+        </View>
+        <View
+          style={{
+            height: 410,
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+          }}
+        >
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate('FirstQuestion')}
+          >
+            <Text style={styles.buttonText}>Let's run!</Text>
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
     );
   } else {
     return (
-      <CustomButton
-        text={"Let's run"}
-        handlePress={() => navigation.navigate('FirstQuestion')}
-      />
+      <View style={styles.loadingScreen}>
+        <ActivityIndicator />
+      </View>
     );
   }
 }
 const styles = StyleSheet.create({
-  icon: {
-    width: 50,
-    height: 50,
+  weatherWidget: {
+    alignSelf: 'flex-end',
+    width: 150,
+    height: 150,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    elevation: 1,
+    backgroundColor: 'black',
+    borderRadius: 20,
+    marginRight: 15,
+    marginTop: 10,
+  },
+
+  weatherText: {
+    marginLeft: 11,
+    color: 'white',
+  },
+
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    backgroundColor: 'black',
+    height: 70,
+    width: 320,
+    margin: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 2,
+    shadowRadius: 1,
+    elevation: 5,
+  },
+  buttonText: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: 'white',
+  },
+
+  loadingScreen: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

@@ -1,7 +1,8 @@
-import React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet, Text, TouchableOpacity, StatusBar } from 'react-native';
 
 const CustomButton = ({ text, handlePress }) => {
+  useEffect(() => StatusBar.setHidden(true));
   return (
     <TouchableOpacity style={styles.button} onPress={handlePress}>
       <Text style={styles.buttonText}>{text}</Text>
@@ -13,20 +14,22 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 10,
-    backgroundColor: 'yellow',
-    height: 60,
-    width: 200,
-    margin: 10,
+    borderRadius: 20,
+    backgroundColor: 'white',
+    height: 125,
+    width: 125,
+    margin: 15,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.3,
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 2,
     shadowRadius: 1,
-    elevation: 2,
+    elevation: 5,
   },
   buttonText: {
-    fontWeight: 'bold',
-    fontSize: 20,
+    fontWeight: '800',
+    fontSize: 30,
+    color: 'black',
+    textAlign: 'center',
   },
 });
 

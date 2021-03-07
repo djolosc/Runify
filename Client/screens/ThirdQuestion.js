@@ -1,6 +1,13 @@
 import IP from '../config.js';
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  FlatList,
+  ImageBackground,
+} from 'react-native';
 import db from '../DB/DB';
 import PlaylistDB from '../DB/PlaylistDB';
 import CustomButton from '../components/CustomButton';
@@ -56,45 +63,71 @@ const ThirdQuestion = ({
   //uncomment when you finish the databse!
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.textContainer}>
-        <Text style={styles.headerText}>Reason to run?</Text>
-      </View>
-      <View>
-        <FlatList
-          data={BUTTONS}
-          keyExtractor={(item) => item.text}
-          renderItem={({ item }) => (
-            <CustomButton
-              text={item.text}
-              handlePress={() => {
-                getRoute(preferences);
-                getPlaylist(item.text);
-                navigation.navigate('FinalScreen');
-              }}
-            />
-          )}
-        />
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <ImageBackground
+        style={styles.image}
+        source={require('../Pictures/background1.jpg')}
+      >
+        <View style={styles.textContainer}>
+          <Text style={styles.headerText}>Reason to run?</Text>
+        </View>
+        <View style={styles.flatListContainer}>
+          <FlatList
+            horizontal={false}
+            numColumns={2}
+            data={BUTTONS}
+            keyExtractor={(item) => item.text}
+            scrollEnabled={false}
+            renderItem={({ item }) => (
+              <CustomButton
+                text={item.text}
+                handlePress={() => {
+                  getRoute(preferences);
+                  getPlaylist(item.text);
+                  navigation.navigate('FinalScreen');
+                }}
+              />
+            )}
+          />
+        </View>
+      </ImageBackground>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  image: {
+    flex: 1,
+    resizeMode: 'cover',
+    height: '100%',
+    width: '100%',
+    opacity: 0.9,
+    alignItems: 'center',
+  },
   headerText: {
     fontWeight: 'bold',
     fontSize: 40,
     textAlign: 'center',
   },
   container: {
-    alignItems: 'center',
+    flex: 1,
   },
 
   textContainer: {
-    height: 300,
+    backgroundColor: 'rgba(255,255,255,0.7)',
+    height: 200,
+    width: 350,
+    marginTop: 80,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
+    borderRadius: 20,
+  },
+
+  flatListContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 90,
   },
 });
 
