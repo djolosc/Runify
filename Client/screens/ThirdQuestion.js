@@ -14,16 +14,16 @@ import CustomButton from '../components/CustomButton';
 
 const BUTTONS = [
   {
-    text: 'I got dumped!!!',
+    text: '😢',
   },
   {
-    text: "I'm annoyed by my parents",
+    text: '😁',
   },
   {
-    text: "I'm super stressed",
+    text: '😫',
   },
   {
-    text: "I don't have sex",
+    text: '🤩',
   },
 ];
 
@@ -69,7 +69,7 @@ const ThirdQuestion = ({
         source={require('../Pictures/background1.jpg')}
       >
         <View style={styles.textContainer}>
-          <Text style={styles.headerText}>Reason to run?</Text>
+          <Text style={styles.headerText}>How are you feeling?</Text>
         </View>
         <View style={styles.flatListContainer}>
           <FlatList
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 40,
     textAlign: 'center',
+    fontFamily: 'Geeza Pro',
   },
   container: {
     flex: 1,

@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 40,
     textAlign: 'center',
+    fontFamily: 'Geeza Pro',
   },
   container: {
     flex: 1,

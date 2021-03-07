@@ -8,7 +8,6 @@ import {
   Linking,
   Image,
   TextInput,
-  TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
 import { Button } from 'react-native-elements';
@@ -31,18 +30,15 @@ const FinalScreen = ({
   return (
     <SafeAreaView style={styles.container}>
       <TouchableOpacity
-        style={{ width: 30, height: 30 }}
+        style={styles.homeButton}
         onPress={() => navigation.navigate('Home')}
       >
-        <HomeIcon />
+        <Text style={styles.homeButtonText}>Home </Text>
+        <HomeIcon style={{ height: 20, width: 20 }} />
       </TouchableOpacity>
       <Text style={styles.headerText}>
         Enjoy your {runningRoute.km}km run in {runningRoute.routeName} route
       </Text>
-      <CustomButton
-        text={'Click here for more info'}
-        handlePress={() => setModalVisible(true)}
-      />
 
       <View
         style={{
@@ -82,38 +78,54 @@ const FinalScreen = ({
           icon={<PaperPlane style={{ height: 15, width: 15 }} />}
         />
       </View>
-      <View>
-        <MapView
-          initialRegion={runningRoute.initialRegion}
-          style={{ width: 300, height: 300 }}
-          provider={MapView.PROVIDER_GOOGLE}
-        >
-          <Polyline
-            coordinates={runningRoute.coordinates}
-            strokeWidth={3}
-            strokeColor={'#0000FF'}
-            geodesic={true}
-          />
-          <Marker coordinate={runningRoute.coordinates[0]} title={'start'} />
-        </MapView>
+      <View style={styles.result}>
+        <View style={{ alignSelf: 'flex-start' }}>
+          <TouchableOpacity
+            style={styles.infoButton}
+            onPress={() => {
+              setModalVisible(true);
+            }}
+          >
+            <Text style={styles.infoButtonText}>Info</Text>
+          </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity
-          style={styles.playlist}
-          onPress={() => {
-            Linking.openURL(playlist.url);
-          }}
-        >
-          <Image style={{ width: 100, height: 100 }} source={playlist.img} />
-          <Text style={styles.playlistText}>
-            Here's your{' '}
-            {
-              <View style={{ height: 30, width: 30 }}>
-                <SpotifyIcon />
-              </View>
-            }{' '}
-            playlist
-          </Text>
-        </TouchableOpacity>
+        <View>
+          <MapView
+            initialRegion={runningRoute.initialRegion}
+            style={{ width: 300, height: 300, borderRadius: 5 }}
+            provider={MapView.PROVIDER_GOOGLE}
+          >
+            <Polyline
+              coordinates={runningRoute.coordinates}
+              strokeWidth={3}
+              strokeColor={'#0000FF'}
+              geodesic={true}
+            />
+            <Marker coordinate={runningRoute.coordinates[0]} title={'start'} />
+          </MapView>
+
+          <TouchableOpacity
+            style={styles.playlist}
+            onPress={() => {
+              Linking.openURL(playlist.url);
+            }}
+          >
+            <Image
+              style={{
+                width: 90,
+                height: 90,
+                borderTopLeftRadius: 20,
+                borderBottomLeftRadius: 20,
+              }}
+              source={playlist.img}
+            />
+            <View style={styles.playlistTextContainer}>
+              <SpotifyIcon style={{ height: 35, width: 35, marginBottom: 4 }} />
+              <Text style={styles.playlistText}>playlist</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
       <Modal
         isVisible={isModalVisible}
@@ -135,26 +147,45 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     flex: 1,
-    margin: 5,
+    margin: 10,
   },
   headerText: {
-    fontWeight: 'bold',
+    height: 170,
+    marginTop: 10,
+    fontWeight: '800',
     fontSize: 40,
     textAlign: 'left',
+    fontFamily: 'Geeza Pro',
+    alignSelf: 'stretch',
   },
 
   playlist: {
-    width: 190,
-    height: 120,
+    width: 300,
+    height: 90,
     flexDirection: 'row',
+    marginTop: 15,
+    backgroundColor: 'black',
+    borderRadius: 20,
     alignItems: 'center',
-    marginTop: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 1,
+    elevation: 3,
   },
-
+  playlistTextContainer: {
+    marginLeft: 22,
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   playlistText: {
-    flexWrap: 'wrap',
-    fontSize: 30,
-    marginLeft: 5,
+    marginBottom: 10,
+    fontFamily: 'Geeza Pro',
+    fontSize: 37,
+    marginLeft: 7,
+    color: 'white',
   },
 
   modalContainer: {
@@ -165,6 +196,7 @@ const styles = StyleSheet.create({
   },
 
   modalView: {
+    fontFamily: 'Geeza Pro',
     height: 400,
     width: 300,
     margin: 20,
@@ -180,6 +212,64 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+
+  homeButton: {
+    width: 100,
+    height: 30,
+    flexDirection: 'row',
+    alignSelf: 'flex-end',
+    backgroundColor: 'white',
+    shadowColor: '#000',
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 1,
+    elevation: 3,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  homeButtonText: {
+    fontFamily: 'Geeza Pro',
+    fontSize: 20,
+    fontWeight: '600',
+    marginTop: 3,
+  },
+
+  infoButton: {
+    marginLeft: 25,
+    marginBottom: 10,
+    width: 65,
+    height: 27,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    shadowColor: '#000',
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 0.5,
+    elevation: 3,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  infoButtonText: {
+    fontFamily: 'Geeza Pro',
+    fontSize: 18,
+    marginTop: 3,
+    color: 'black',
+    fontWeight: '500',
+  },
+
+  result: {
+    flex: 1,
+    height: '80%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    backgroundColor: 'white',
+    borderRadius: 20,
   },
 });
 

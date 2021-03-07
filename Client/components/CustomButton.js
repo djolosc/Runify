@@ -30,6 +30,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: 'black',
     textAlign: 'center',
+    margin: 10,
+    fontFamily: 'Geeza Pro',
   },
 });
 

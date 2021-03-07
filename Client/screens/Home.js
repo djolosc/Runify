@@ -85,24 +85,41 @@ export default function Home({ totalKilometers, navigation }) {
             style={{
               fontSize: 20,
               fontWeight: 'normal',
-              marginLeft: 10,
-              marginTop: 7,
+              marginLeft: 12,
+              marginTop: 10,
               color: 'white',
+              fontFamily: 'Geeza Pro',
             }}
           >
             Belgrade
           </Text>
-          <Text style={{ fontSize: 45, marginLeft: 11, color: 'white' }}>
+          <Text
+            style={{
+              fontSize: 45,
+              marginLeft: 12,
+              color: 'white',
+              fontFamily: 'Geeza Pro',
+            }}
+          >
             {Math.round(currentWeather.main.temp)}º
           </Text>
           <WeatherTag style={{ height: 30, width: 30, marginLeft: 7 }} />
-          <Text style={{ marginLeft: 11, color: 'white' }}>
+          <Text
+            style={{ marginLeft: 12, color: 'white', fontFamily: 'Geeza Pro' }}
+          >
             {currentWeather.weather[0].description}
           </Text>
         </View>
 
         <View style={{ marginTop: 15 }}>
-          <Text style={{ fontWeight: '800', fontSize: 40, marginLeft: 15 }}>
+          <Text
+            style={{
+              // fontWeight: '800',
+              fontSize: 40,
+              marginLeft: 15,
+              fontFamily: 'GeezaPro-Bold',
+            }}
+          >
             Welcome back, Đorđe!
           </Text>
           <Text
@@ -111,6 +128,7 @@ export default function Home({ totalKilometers, navigation }) {
               fontSize: 20,
               marginLeft: 15,
               marginTop: 5,
+              fontFamily: 'Geeza Pro',
             }}
           >
             So far, you have totally run {totalKilometers}km
@@ -179,6 +197,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
     color: 'white',
+    fontFamily: 'Geeza Pro',
   },
 
   loadingScreen: {
