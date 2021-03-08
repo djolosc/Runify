@@ -4,26 +4,17 @@ import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
   FlatList,
   ImageBackground,
-  Image,
 } from 'react-native';
 
 import CustomButton from '../components/CustomButton';
-import CachedImage from '../components/CachedImage';
-import { ActivityIndicator } from 'react-native';
+
 function random(numbers) {
   return numbers[Math.floor(Math.random() * numbers.length)];
 }
 
-const FirstQuestion = ({
-  navigation,
-  preferences,
-  setPreferences,
-  backgroundImage,
-  firstImage,
-}) => {
+const FirstQuestion = ({ navigation, preferences, setPreferences }) => {
   const [walkingKm, setWalkingKm] = useState(0);
 
   useEffect(() => {

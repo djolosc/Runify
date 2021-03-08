@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import IP from './config.js';
 import Home from './screens/Home';
 import FirstQuestion from './screens/FirstQuestion';
 import SecondQuestion from './screens/SecondQuestion';
@@ -18,12 +18,19 @@ export default function App() {
   const [runningRoute, setRunningRoute] = useState({});
   const [playlist, setPlaylist] = useState({});
   const [totalKilometers, setTotalKilometers] = useState(0);
+  const [allRoutes, setAllRoutes] = useState([]);
+
+  const getAllRoutes = () => {
+    return fetch(`${IP.IP}/routes`)
+      .then((res) => res.json())
+      .then((route) => {
+        setAllRoutes(route);
+      });
+  };
 
   useEffect(() => {
-    console.log(preferences);
-    console.log('route', runningRoute);
-    console.log('playlist', playlist);
-  }, [preferences, runningRoute, playlist]);
+    getAllRoutes();
+  }, []);
 
   return (
     <SafeAreaProvider>
@@ -32,6 +39,7 @@ export default function App() {
           <Stack.Screen name="Home" options={{ headerShown: false }}>
             {(props) => (
               <Home
+                allRoutes={allRoutes}
                 preferences={preferences}
                 setPreferences={setPreferences}
                 totalKilometers={totalKilometers}
@@ -60,6 +68,7 @@ export default function App() {
                 preferences={preferences}
                 setRunningRoute={setRunningRoute}
                 setPlaylist={setPlaylist}
+                allRoutes={allRoutes}
                 {...props}
               />
             )}
@@ -70,6 +79,7 @@ export default function App() {
                 runningRoute={runningRoute}
                 playlist={playlist}
                 setTotalKilometers={setTotalKilometers}
+                getAllRoutes={getAllRoutes}
                 {...props}
               />
             )}

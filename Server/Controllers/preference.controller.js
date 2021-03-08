@@ -14,7 +14,10 @@ exports.getAllRoutes = async (req, res) => {
 
 exports.postRoute = async (req, res) => {
   try {
-    console.log(req.params);
+    const body = req.body;
+    const route = await Preference.create(body);
+    res.send(route);
+    res.status(200);
   } catch (error) {
     console.log(error);
     res.send(error);
@@ -29,6 +32,40 @@ exports.getRoute = async (req, res) => {
     const routeName = route.route;
     res.send({ routeName });
     res.status(200);
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+    res.status(500);
+  }
+};
+
+exports.changeToTrue = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    await Preference.findOneAndUpdate(
+      { _id: id },
+      { $set: { favourite: true } }
+    );
+    res.send(id);
+    res.status(204);
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+    res.status(500);
+  }
+};
+
+exports.changeToFalse = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    await Preference.findOneAndUpdate(
+      { _id: id },
+      { $set: { favourite: false } }
+    );
+    res.send(id);
+    res.status(204);
   } catch (error) {
     console.log(error);
     res.send(error);

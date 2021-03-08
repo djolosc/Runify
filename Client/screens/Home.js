@@ -6,9 +6,10 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
+import Modal from 'react-native-modal';
 
-import CustomButton from '../components/CustomButton';
 import IP from '../config';
 
 import ChanceFlurries from '../svg/chanceflurries.svg';
@@ -30,9 +31,19 @@ import Tstorms from '../svg/tstorms.svg';
 import PartlySunny from '../svg/partlysunny.svg';
 import PartlyCloudy from '../svg/partlycloudy.svg';
 
-export default function Home({ totalKilometers, navigation }) {
+export default function Home({ totalKilometers, navigation, allRoutes }) {
   const [currentWeather, setCurrentWeather] = useState({});
+  const [favouriteRoutes, setFavouriteRoutes] = useState([]);
+  const [isModalVisible, setModalVisible] = useState(false);
 
+  const getFavouriteRoute = () => {
+    const selectedRoute = allRoutes.filter((route) => {
+      return route.favourite === true;
+    });
+    setFavouriteRoutes(selectedRoute);
+  };
+
+  console.log('allRoutes', allRoutes);
   const getWeather = async () => {
     return fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=44.81540311468594&lon=20.46147372061345&appid=${IP.WEATHER_API_KEY}&units=metric`
@@ -45,8 +56,11 @@ export default function Home({ totalKilometers, navigation }) {
 
   useEffect(() => {
     getWeather();
-    console.log('currentWeather', currentWeather);
   }, []);
+
+  useEffect(() => {
+    getFavouriteRoute();
+  }, [allRoutes]);
 
   const weather = {
     ChanceFlurries: ChanceFlurries,
@@ -72,8 +86,6 @@ export default function Home({ totalKilometers, navigation }) {
   if (currentWeather.weather) {
     const weatherName = currentWeather.weather[0].main;
     const WeatherTag = weather[weatherName];
-    console.log(currentWeather);
-
     return (
       <SafeAreaView
         style={{
@@ -134,9 +146,24 @@ export default function Home({ totalKilometers, navigation }) {
             So far, you have totally run {totalKilometers}km
           </Text>
         </View>
+        <View style={styles.flatListContainer}>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            ListHeaderComponent={
+              <View style={styles.listHeaderContainer}>
+                <Text style={styles.listHeaderText}>Favourites</Text>
+              </View>
+            }
+            stickyHeaderIndices={[0]}
+            data={favouriteRoutes}
+            keyExtractor={(item) => item._id}
+            renderItem={({ item }) => (
+              <Text style={styles.flatListText}>{item.routeName}</Text>
+            )}
+          />
+        </View>
         <View
           style={{
-            height: 410,
             justifyContent: 'flex-end',
             alignItems: 'center',
           }}
@@ -177,6 +204,7 @@ const styles = StyleSheet.create({
   weatherText: {
     marginLeft: 11,
     color: 'white',
+    fontFamily: 'Geeza Pro',
   },
 
   button: {
@@ -185,8 +213,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: 'black',
     height: 70,
-    width: 320,
+    width: 345,
     margin: 10,
+    marginTop: 25,
     shadowColor: '#000',
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 2,
@@ -204,5 +233,36 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  flatListContainer: {
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    margin: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 1,
+    elevation: 3,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    height: 300,
+  },
+  flatListText: {
+    margin: 5,
+    marginLeft: 30,
+    fontFamily: 'Geeza Pro',
+    fontSize: 25,
+    fontWeight: '700',
+  },
+  listHeaderText: {
+    fontFamily: 'Geeza Pro',
+    fontSize: 40,
+    fontWeight: '800',
+    margin: 3,
+    marginLeft: 5,
+  },
+  listHeaderContainer: {
+    backgroundColor: 'white',
+    borderTopLeftRadius: 10,
   },
 });

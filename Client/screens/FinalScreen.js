@@ -3,17 +3,16 @@ import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
   TouchableOpacity,
   Linking,
   Image,
   TextInput,
   Keyboard,
 } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, withTheme } from 'react-native-elements';
 import Modal from 'react-native-modal';
 import MapView, { Polyline, Marker } from 'react-native-maps';
-import CustomButton from '../components/CustomButton';
+import IP from '../config';
 import SpotifyIcon from '../svg/spotify-brands.svg';
 import HomeIcon from '../svg/home-solid.svg';
 import PaperPlane from '../svg/paper-plane-solid.svg';
@@ -25,9 +24,34 @@ const FinalScreen = ({
   runningRoute,
   playlist,
   setTotalKilometers,
+  getAllRoutes,
 }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const [isLiked, setIsLiked] = useState(runningRoute.favourite);
+  const setFavourite = () => {
+    return fetch(`${IP.IP}/setToTrue/${runningRoute._id}`, {
+      method: 'PUT',
+      header: {
+        'Content-Type': 'application/json',
+      },
+    });
+  };
+
+  const setNotFavourite = () => {
+    return fetch(`${IP.IP}/setToFalse/${runningRoute._id}`, {
+      method: 'PUT',
+      header: {
+        'Content-Type': 'application/json',
+      },
+    });
+  };
+
+  const handleSetFavourite = () => {
+    isLiked ? setNotFavourite() : setFavourite();
+    setIsLiked(!isLiked);
+    getAllRoutes();
+  };
 
   return (
     <View style={styles.container}>
@@ -45,18 +69,32 @@ const FinalScreen = ({
       <View
         style={{
           flexDirection: 'row',
+          alignContent: 'center',
         }}
       >
-        <Text style={{ textAlign: 'center' }}>
-          How long have you run today?
-        </Text>
+        <View style={{ marginTop: 5, margin: 4 }}>
+          <Text
+            style={{
+              textAlign: 'center',
+              color: 'white',
+              fontFamily: 'Geeza Pro',
+              fontSize: 15,
+            }}
+          >
+            How long have you run today?
+          </Text>
+        </View>
         <TextInput
+          placeholder="Km"
           style={{
             width: 50,
             height: 30,
             borderColor: 'gray',
             borderWidth: 1,
-            borderRadius: 5,
+            borderRadius: 7,
+            marginLeft: 3,
+            marginRight: 3,
+            backgroundColor: 'white',
           }}
           onChangeText={(number) => {
             setInputValue(number);
@@ -66,7 +104,7 @@ const FinalScreen = ({
         />
         <Button
           buttonStyle={{
-            backgroundColor: 'black',
+            backgroundColor: 'white',
             width: 50,
             borderRadius: 10,
           }}
@@ -97,11 +135,16 @@ const FinalScreen = ({
           >
             <Text style={styles.infoButtonText}>Info</Text>
           </TouchableOpacity>
-          {runningRoute.favourite ? (
-            <FullHeart style={{ height: 25, width: 25 }} />
-          ) : (
-            <EmptyHeart style={{ height: 25, width: 25 }} />
-          )}
+
+          {
+            <TouchableOpacity onPress={handleSetFavourite}>
+              {isLiked ? (
+                <FullHeart style={{ height: 25, width: 25 }} />
+              ) : (
+                <EmptyHeart style={{ height: 25, width: 25 }} />
+              )}
+            </TouchableOpacity>
+          }
         </View>
 
         <View>

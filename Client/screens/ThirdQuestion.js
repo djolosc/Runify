@@ -1,14 +1,11 @@
-import IP from '../config.js';
 import React from 'react';
 import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
   FlatList,
   ImageBackground,
 } from 'react-native';
-import db from '../DB/DB';
 import PlaylistDB from '../DB/PlaylistDB';
 import CustomButton from '../components/CustomButton';
 
@@ -32,35 +29,22 @@ const ThirdQuestion = ({
   preferences,
   setRunningRoute,
   setPlaylist,
+  allRoutes,
 }) => {
   const getRoute = (body) => {
     const { km, scenery } = body;
-
-    const selectedRoute = db.filter((route) => {
+    const selectedRoute = allRoutes.filter((route) => {
       return route.km === km && route.scenery === scenery;
     });
     setRunningRoute(selectedRoute[0]);
   };
 
   const getPlaylist = (currentMood) => {
-    console.log('currentMood', currentMood);
     const selectedPlaylist = PlaylistDB.filter((playlist) => {
       return playlist.name === currentMood;
     });
     setPlaylist(selectedPlaylist[0]);
   };
-
-  // const getRoute = (body) => {
-  //   const { km, scenery } = body;
-  //   return fetch(`${IP.IP}/${km}/${scenery}`)
-  //     .then((res) => res.json())
-  //     .then((route) => setRouteName(route.routeName))
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
-
-  //uncomment when you finish the databse!
 
   return (
     <View style={styles.container}>

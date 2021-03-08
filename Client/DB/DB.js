@@ -188,7 +188,6 @@ const db = [
     scenery: 'Scenic',
     favourite: false,
     routeName: 'Tašmajdan',
-
     description:
       'Tašmajdan is the second largest park in downtown Belgrade, and one of the most important in the city both historically and in terms of attractions and activities.The course is not too wide – only two can run simultaneously, but among the runners there is an unwritten rule to move in the opposite direction of the clock. At the top there are about a dozen exercise machines that are far more crowded than the trail itself. In several places it is crossed with hiking trails, and it is necessary to take care, especially during the day and in the early evening hours.',
     coordinates: [
@@ -242,7 +241,7 @@ const db = [
     favourite: false,
     routeName: 'Hayd Park',
     description:
-      'The park is triangular in shape. Hyde Park was laid out in the 1930s. Though called park, it is officially classified as an urban forest. It covers an area of 8.28 ha (20.5 acres). This route has an elevation gain of about 0 ft and is rated as easy.',
+      'Hyde par is a park in suburban Belgrade. It is situated in the municipality of Savski Venac, on the northenr slopes of Topčider Gill. It consists of two parts: woodland with tracks and another with appliances for fitness and recreation. Even though it is close to the city center this would be a perfect running location fot the ones that like to be surrounded by trees and natures. It is also suitable for shorter trail runs',
     coordinates: [
       { latitude: 44.79094710454892, longitude: 20.451541368385396 },
       { latitude: 44.790855927683516, longitude: 20.450385088390185 },
@@ -272,7 +271,8 @@ const db = [
     scenery: 'Scenic',
     favourite: false,
     routeName: 'Ušće',
-    description: 'One of the biggest parks in Belgrade. ',
+    description:
+      'Ušće is located on the mouth of the Sava river into the Danube, thus the name (ušće is Serbian for river mouth). It’s a compact grassy and forested area that stretches along the bank of the Danube. Like all of Novi Beograd, Ušće is flat, and without buildings to hide that fact like in the rest of the municipality, that is quite obvious here.Ušće is a vast grassy and forested area (2,5 "km" x 1 "km") along the river banks. As such, it is used by many Belgraders as a recreational area. This is an ideal running place for people who feel at home when close to the water.',
     coordinates: [
       { latitude: 44.81514486569136, longitude: 20.439300516951377 },
       { latitude: 44.8154496900962, longitude: 20.439908029269787 },
@@ -503,7 +503,8 @@ const db = [
     scenery: 'City',
     favourite: false,
     routeName: 'Bulevar Zorana Đinđića',
-    description: '',
+    description:
+      "The Arena is a multi-purpose indoor arena located in Belgrade, Serbia. It is designed as a universal hall for sports, cultural events and other programs. It is located in Belgrade's municipality of Novi Beograd. Like all of Novi Beograd, the area around Arena is flat and thus convenient for a beginner level run. The sidewalks are wide and well kept which makes it a very good area for urban run lovers.",
     coordinates: [
       { latitude: 44.8116548640539, longitude: 20.431661044402485 },
       { latitude: 44.81896627894438, longitude: 20.414758003865884 },
@@ -523,7 +524,8 @@ const db = [
     scenery: 'City',
     favourite: false,
     routeName: 'NBG Blokovi',
-    description: '',
+    description:
+      'This area is very urban and popular amongst younger generations. There is a river bank which is a common area for people to go for walks with dogs and have a nice view of the river and sunset. This route combines an easy flat surface river run and also city run in the newly remodelled area around the buildings with wide newly built running tracks.',
     coordinates: [
       { latitude: 44.80357509181753, longitude: 20.387984252246348 },
       { latitude: 44.80466082761235, longitude: 20.3871570956864 },
@@ -553,7 +555,8 @@ const db = [
     scenery: 'City',
     favourite: false,
     routeName: 'Crveni Krst',
-    description: '',
+    description:
+      "Crveni Krst or colloquially just Krst, is an urban neighborhood of Belgrade, the capital of Serbia. It is located in Belgrade's municipalities of Vračar and Zvezdara. This is another route that is a mix of an urban run and nature run. You will pass through Sumice which is a nice park where you can do some trail running and then continue to the street run going around some of the famous Belgrade landmarks. This is a route that is ideal for more experienced runners with part of the route being uphill and is an excellent cardio program with frequent pace changing.",
     coordinates: [
       { latitude: 44.79144111583479, longitude: 20.469210700653633 },
       { latitude: 44.79007479988447, longitude: 20.469999735233372 },
