@@ -17,6 +17,8 @@ import CustomButton from '../components/CustomButton';
 import SpotifyIcon from '../svg/spotify-brands.svg';
 import HomeIcon from '../svg/home-solid.svg';
 import PaperPlane from '../svg/paper-plane-solid.svg';
+import FullHeart from '../svg/heart-solid.svg';
+import EmptyHeart from '../svg/heart-regular.svg';
 
 const FinalScreen = ({
   navigation,
@@ -28,7 +30,7 @@ const FinalScreen = ({
   const [inputValue, setInputValue] = useState('');
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <TouchableOpacity
         style={styles.homeButton}
         onPress={() => navigation.navigate('Home')}
@@ -79,7 +81,14 @@ const FinalScreen = ({
         />
       </View>
       <View style={styles.result}>
-        <View style={{ alignSelf: 'flex-start' }}>
+        <View
+          style={{
+            alignSelf: 'flex-start',
+            flexDirection: 'row',
+            width: 325,
+            justifyContent: 'space-between',
+          }}
+        >
           <TouchableOpacity
             style={styles.infoButton}
             onPress={() => {
@@ -88,6 +97,11 @@ const FinalScreen = ({
           >
             <Text style={styles.infoButtonText}>Info</Text>
           </TouchableOpacity>
+          {runningRoute.favourite ? (
+            <FullHeart style={{ height: 25, width: 25 }} />
+          ) : (
+            <EmptyHeart style={{ height: 25, width: 25 }} />
+          )}
         </View>
 
         <View>
@@ -138,7 +152,7 @@ const FinalScreen = ({
           </View>
         </View>
       </Modal>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -147,11 +161,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     flex: 1,
-    margin: 10,
+    backgroundColor: 'black',
   },
   headerText: {
+    color: 'white',
     height: 170,
     marginTop: 10,
+    marginLeft: 13,
     fontWeight: '800',
     fontSize: 40,
     textAlign: 'left',
@@ -163,7 +179,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 90,
     flexDirection: 'row',
-    marginTop: 15,
+    marginTop: 20,
     backgroundColor: 'black',
     borderRadius: 20,
     alignItems: 'center',
@@ -220,7 +236,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'flex-end',
     backgroundColor: 'white',
-    shadowColor: '#000',
+    shadowColor: 'grey',
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.5,
     shadowRadius: 1,
@@ -228,6 +244,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 40,
+    marginRight: 15,
   },
 
   homeButtonText: {
@@ -245,7 +263,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white',
     shadowColor: '#000',
-    shadowOffset: { width: 2, height: 2 },
+    shadowOffset: { width: 1.5, height: 1.5 },
     shadowOpacity: 0.3,
     shadowRadius: 0.5,
     elevation: 3,
@@ -264,12 +282,14 @@ const styles = StyleSheet.create({
 
   result: {
     flex: 1,
-    height: '80%',
+    width: 350,
     justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
     backgroundColor: 'white',
     borderRadius: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    opacity: 0.9,
   },
 });
 

@@ -66,13 +66,14 @@ const ThirdQuestion = ({
     <View style={styles.container}>
       <ImageBackground
         style={styles.image}
-        source={require('../Pictures/background1.jpg')}
+        source={require('../Pictures/background3.png')}
       >
         <View style={styles.textContainer}>
           <Text style={styles.headerText}>How are you feeling?</Text>
         </View>
         <View style={styles.flatListContainer}>
           <FlatList
+            opacity={0.85}
             horizontal={false}
             numColumns={2}
             data={BUTTONS}

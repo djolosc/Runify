@@ -2,6 +2,7 @@ const db = [
   {
     km: 5,
     scenery: 'River',
+    favourite: true,
     routeName: 'Ada-Dorćol',
     description:
       'The running track that follows Sava river from Old Town side gives you the opportunity to run all the way to the Danube and Sava confluence and further. We certainly recommend you to try this track, especially if you have just started running, because there are enough benches if you are looking for the rest.',
@@ -45,6 +46,7 @@ const db = [
   {
     km: 7,
     scenery: 'River',
+    favourite: false,
     routeName: 'Ada',
     description:
       'The trail is asphalted; wide enough not to collide with other people and the abundance of trees that offers more than the necessary shade during the hot months of the summer. Also, there are more sports facilities if you want to make your running training more like a combined training.',
@@ -132,6 +134,7 @@ const db = [
   {
     km: 10,
     scenery: 'River',
+    favourite: false,
     routeName: 'Zemun',
     description:
       'If you love running along the river, this is a great place for you. The trail is well arranged and provides you with sufficient amount of shade and benches for rest, however, sunny afternoons could be crowded. Make sure you take water with yourself, because there is only one fountain, near the hotel Yugoslavia. There are often swans along the river, which will definitely make your running special.',
@@ -183,7 +186,9 @@ const db = [
   {
     km: 5,
     scenery: 'Scenic',
+    favourite: false,
     routeName: 'Tašmajdan',
+
     description:
       'Tašmajdan is the second largest park in downtown Belgrade, and one of the most important in the city both historically and in terms of attractions and activities.The course is not too wide – only two can run simultaneously, but among the runners there is an unwritten rule to move in the opposite direction of the clock. At the top there are about a dozen exercise machines that are far more crowded than the trail itself. In several places it is crossed with hiking trails, and it is necessary to take care, especially during the day and in the early evening hours.',
     coordinates: [
@@ -234,6 +239,7 @@ const db = [
   {
     km: 7,
     scenery: 'Scenic',
+    favourite: false,
     routeName: 'Hayd Park',
     description:
       'The park is triangular in shape. Hyde Park was laid out in the 1930s. Though called park, it is officially classified as an urban forest. It covers an area of 8.28 ha (20.5 acres). This route has an elevation gain of about 0 ft and is rated as easy.',
@@ -264,6 +270,7 @@ const db = [
   {
     km: 10,
     scenery: 'Scenic',
+    favourite: false,
     routeName: 'Ušće',
     description: 'One of the biggest parks in Belgrade. ',
     coordinates: [
@@ -321,6 +328,7 @@ const db = [
   {
     km: 5,
     scenery: 'Forest',
+    favourite: false,
     routeName: 'Banjička Šuma',
     description:
       'If the shade, nature and a lot of benches are your criteria for a good path, then head to Banjička forest. Not only is the surface of the track perfect, but for nature lovers, this is a real oasis. The park is protected and has various birds that give the impression that you have left the city. A dense forest drastically reduces the sounds of traffic so you can enjoy really peaceful running. The trail has a small climb.',
@@ -364,6 +372,7 @@ const db = [
   {
     km: 7,
     scenery: 'Forest',
+    favourite: false,
     routeName: 'Zvezdara',
     description:
       'Zvezdara is the largest forest in the urban zone of Belgrade and with them, the most important source of the oxygen for the city. After the run you can visit the only Observatory in the city',
@@ -424,6 +433,7 @@ const db = [
   {
     km: 10,
     scenery: 'Forest',
+    favourite: false,
     routeName: 'Košutnjak',
     description:
       'Košutnjak offers various options for anyone who decides to visit Belgrade forest. You can run on a trim track, but also make your own path in open fields and forest paths if you are looking for hilly running. For beginners, we recommend you to keep track on the arranged path since there are lots of benches, fountains and exercise equipment that can be of interest to you. This is a great place for relaxing from stress and because of the greenery, the temperature is several degrees lower, so Košutnjak can provide you with some relief during hot summer days. ',
@@ -491,6 +501,7 @@ const db = [
   {
     km: 5,
     scenery: 'City',
+    favourite: false,
     routeName: 'Bulevar Zorana Đinđića',
     description: '',
     coordinates: [
@@ -510,6 +521,7 @@ const db = [
   {
     km: 7,
     scenery: 'City',
+    favourite: false,
     routeName: 'NBG Blokovi',
     description: '',
     coordinates: [
@@ -539,6 +551,7 @@ const db = [
   {
     km: 10,
     scenery: 'City',
+    favourite: false,
     routeName: 'Crveni Krst',
     description: '',
     coordinates: [

@@ -24,6 +24,7 @@ export default function App() {
     console.log('route', runningRoute);
     console.log('playlist', playlist);
   }, [preferences, runningRoute, playlist]);
+
   return (
     <SafeAreaProvider>
       <NavigationContainer>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import {
   StyleSheet,
@@ -11,17 +11,25 @@ import {
 } from 'react-native';
 
 import CustomButton from '../components/CustomButton';
-
+import CachedImage from '../components/CachedImage';
+import { ActivityIndicator } from 'react-native';
 function random(numbers) {
   return numbers[Math.floor(Math.random() * numbers.length)];
 }
 
-const FirstQuestion = ({ navigation, preferences, setPreferences }) => {
+const FirstQuestion = ({
+  navigation,
+  preferences,
+  setPreferences,
+  backgroundImage,
+  firstImage,
+}) => {
   const [walkingKm, setWalkingKm] = useState(0);
 
   useEffect(() => {
     setWalkingKm(random([5, 7, 10]));
   }, [preferences]);
+  useEffect(() => {});
 
   const BUTTONS = [
     {
@@ -46,7 +54,7 @@ const FirstQuestion = ({ navigation, preferences, setPreferences }) => {
     <View style={styles.container}>
       <ImageBackground
         style={styles.image}
-        source={require('../Pictures/background1.jpg')}
+        source={require('../Pictures/background1.png')}
       >
         <View style={styles.textContainer}>
           <Text style={styles.headerText}>
@@ -55,6 +63,7 @@ const FirstQuestion = ({ navigation, preferences, setPreferences }) => {
         </View>
         <View style={styles.flatListContainer}>
           <FlatList
+            opacity={0.85}
             horizontal={false}
             numColumns={2}
             data={BUTTONS}

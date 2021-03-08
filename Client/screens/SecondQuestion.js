@@ -37,13 +37,14 @@ const SecondQuestion = ({ navigation, setPreferences }) => {
     <View style={styles.container}>
       <ImageBackground
         style={styles.image}
-        source={require('../Pictures/background1.jpg')}
+        source={require('../Pictures/background2.png')}
       >
         <View style={styles.textContainer}>
           <Text style={styles.headerText}>Where would you like to run?</Text>
         </View>
         <View style={styles.flatListContainer}>
           <FlatList
+            opacity={0.85}
             horizontal={false}
             numColumns={2}
             contentContainerStyle={styles.buttonsContainer}
