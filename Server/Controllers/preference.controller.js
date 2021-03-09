@@ -42,7 +42,7 @@ exports.getRoute = async (req, res) => {
 exports.changeToTrue = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
+
     await Preference.findOneAndUpdate(
       { _id: id },
       { $set: { favourite: true } }
@@ -59,7 +59,7 @@ exports.changeToTrue = async (req, res) => {
 exports.changeToFalse = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
+
     await Preference.findOneAndUpdate(
       { _id: id },
       { $set: { favourite: false } }

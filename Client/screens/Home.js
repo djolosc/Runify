@@ -265,6 +265,18 @@ export default function Home({ totalKilometers, navigation, allRoutes }) {
                 />
                 {/* <Marker coordinate={modalInfo.coordinates[0]} title={'start'} /> */}
               </MapView>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'flex-start',
+                  width: 300,
+                }}
+              >
+                <View style={styles.modalTextContainer}>
+                  <Text style={styles.modalText}>{modalInfo.routeName}</Text>
+                </View>
+                <Text style={styles.kmText}>{modalInfo.km}km</Text>
+              </View>
             </View>
           </Modal>
         </View>
@@ -383,10 +395,10 @@ const styles = StyleSheet.create({
 
   modalView: {
     fontFamily: 'Geeza Pro',
-    height: 400,
+    height: 420,
     width: 350,
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: '#F0F5F9',
     borderRadius: 20,
     padding: 30,
     alignSelf: 'center',
@@ -399,5 +411,31 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+
+  modalText: {
+    marginTop: 11,
+    fontFamily: 'Geeza Pro',
+    fontSize: 30,
+    color: '#1E2022',
+    fontWeight: '600',
+  },
+
+  modalTextContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+
+    height: 87,
+    width: 240,
+  },
+
+  kmText: {
+    marginTop: 3,
+    marginLeft: 12,
+    fontFamily: 'Geeza Pro',
+    fontSize: 20,
+    color: '#1E2022',
+    fontWeight: '300',
   },
 });

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,7 +10,7 @@ import {
   Keyboard,
   ScrollView,
 } from 'react-native';
-import { Button, withTheme } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import Modal from 'react-native-modal';
 import MapView, { Polyline, Marker } from 'react-native-maps';
 import IP from '../config';
@@ -79,7 +79,7 @@ const FinalScreen = ({
               textAlign: 'center',
               color: 'white',
               fontFamily: 'Geeza Pro',
-              fontSize: 15,
+              fontSize: 17,
             }}
           >
             How long have you run today?
@@ -92,7 +92,7 @@ const FinalScreen = ({
             height: 30,
             borderColor: 'gray',
             borderWidth: 1,
-            borderRadius: 7,
+            borderRadius: 10,
             marginLeft: 3,
             marginRight: 3,
             backgroundColor: 'white',
