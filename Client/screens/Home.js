@@ -9,8 +9,9 @@ import {
   FlatList,
 } from 'react-native';
 import Modal from 'react-native-modal';
-
+import * as Animatable from 'react-native-animatable';
 import IP from '../config';
+import MapView, { Polyline, Marker } from 'react-native-maps';
 
 import ChanceFlurries from '../svg/chanceflurries.svg';
 import ChanceSnows from '../svg/chancesnow.svg';
@@ -35,7 +36,7 @@ export default function Home({ totalKilometers, navigation, allRoutes }) {
   const [currentWeather, setCurrentWeather] = useState({});
   const [favouriteRoutes, setFavouriteRoutes] = useState([]);
   const [isModalVisible, setModalVisible] = useState(false);
-
+  const [modalInfo, setModalInfo] = useState({});
   const getFavouriteRoute = () => {
     const selectedRoute = allRoutes.filter((route) => {
       return route.favourite === true;
@@ -43,7 +44,6 @@ export default function Home({ totalKilometers, navigation, allRoutes }) {
     setFavouriteRoutes(selectedRoute);
   };
 
-  console.log('allRoutes', allRoutes);
   const getWeather = async () => {
     return fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=44.81540311468594&lon=20.46147372061345&appid=${IP.WEATHER_API_KEY}&units=metric`
@@ -87,95 +87,188 @@ export default function Home({ totalKilometers, navigation, allRoutes }) {
     const weatherName = currentWeather.weather[0].main;
     const WeatherTag = weather[weatherName];
     return (
-      <SafeAreaView
+      <View
         style={{
           flex: 1,
+          backgroundColor: '#F0F5F9',
         }}
       >
-        <View style={styles.weatherWidget}>
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: 'normal',
-              marginLeft: 12,
-              marginTop: 10,
-              color: 'white',
-              fontFamily: 'Geeza Pro',
-            }}
-          >
-            Belgrade
-          </Text>
-          <Text
-            style={{
-              fontSize: 45,
-              marginLeft: 12,
-              color: 'white',
-              fontFamily: 'Geeza Pro',
-            }}
-          >
-            {Math.round(currentWeather.main.temp)}º
-          </Text>
-          <WeatherTag style={{ height: 30, width: 30, marginLeft: 7 }} />
-          <Text
-            style={{ marginLeft: 12, color: 'white', fontFamily: 'Geeza Pro' }}
-          >
-            {currentWeather.weather[0].description}
-          </Text>
-        </View>
+        <View style={{ marginTop: 47 }}>
+          <View style={styles.weatherWidget}>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: 'normal',
+                marginLeft: 12,
+                marginTop: 10,
+                color: 'white',
+                fontFamily: 'Geeza Pro',
+              }}
+            >
+              Belgrade
+            </Text>
+            <Text
+              style={{
+                fontSize: 45,
+                marginLeft: 12,
+                color: 'white',
+                fontFamily: 'Geeza Pro',
+              }}
+            >
+              {Math.round(currentWeather.main.temp)}º
+            </Text>
+            <WeatherTag style={{ height: 30, width: 30, marginLeft: 7 }} />
+            <Text
+              style={{
+                marginLeft: 12,
+                color: 'white',
+                fontFamily: 'Geeza Pro',
+              }}
+            >
+              {currentWeather.weather[0].description}
+            </Text>
+          </View>
 
-        <View style={{ marginTop: 15 }}>
-          <Text
+          <View style={{ marginTop: 30, marginBottom: 20 }}>
+            <Text
+              style={{
+                fontWeight: '900',
+                fontSize: 40,
+                color: '#1E2022',
+                fontFamily: 'GeezaPro-Bold',
+                textAlign: 'center',
+              }}
+            >
+              RUNIFY
+            </Text>
+            <Text
+              style={{
+                // fontWeight: '800',
+                fontSize: 20,
+                color: 'grey',
+                fontFamily: 'HelveticaNeue-Italic',
+                textAlign: 'center',
+              }}
+            >
+              - belgrade -
+            </Text>
+          </View>
+
+          <View
             style={{
-              // fontWeight: '800',
-              fontSize: 40,
-              marginLeft: 15,
-              fontFamily: 'GeezaPro-Bold',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'flex-end',
+              marginTop: 20,
             }}
           >
-            Welcome back, Đorđe!
-          </Text>
-          <Text
-            style={{
-              fontWeight: '500',
-              fontSize: 20,
-              marginLeft: 15,
-              marginTop: 5,
-              fontFamily: 'Geeza Pro',
-            }}
-          >
-            So far, you have totally run {totalKilometers}km
-          </Text>
-        </View>
-        <View style={styles.flatListContainer}>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            ListHeaderComponent={
+            <View style={styles.totalRunContainer}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignContent: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Text
+                  style={{
+                    fontFamily: 'Geeza Pro',
+                    fontSize: 90,
+                    color: 'white',
+                  }}
+                >
+                  {totalKilometers}
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: 'Geeza Pro',
+                    fontSize: 20,
+                    color: 'white',
+                    alignSelf: 'flex-end',
+                    marginBottom: 20,
+                  }}
+                >
+                  km
+                </Text>
+              </View>
+
+              <Text
+                style={{
+                  fontFamily: 'Geeza Pro',
+                  fontSize: 20,
+                  color: 'white',
+                  textAlign: 'center',
+
+                  height: '20%',
+                }}
+              >
+                total
+              </Text>
+            </View>
+
+            <View style={styles.flatListContainer}>
               <View style={styles.listHeaderContainer}>
                 <Text style={styles.listHeaderText}>Favourites</Text>
               </View>
-            }
-            stickyHeaderIndices={[0]}
-            data={favouriteRoutes}
-            keyExtractor={(item) => item._id}
-            renderItem={({ item }) => (
-              <Text style={styles.flatListText}>{item.routeName}</Text>
-            )}
-          />
-        </View>
-        <View
-          style={{
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-          }}
-        >
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate('FirstQuestion')}
+              <FlatList
+                showsVerticalScrollIndicator={false}
+                data={favouriteRoutes}
+                keyExtractor={(item) => item._id}
+                renderItem={({ item }) => (
+                  <View>
+                    <TouchableOpacity
+                      onPress={() => {
+                        setModalInfo(item);
+                        setModalVisible(true);
+                      }}
+                    >
+                      <Text style={styles.flatListText}>{item.routeName}</Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              />
+            </View>
+          </View>
+          <Animatable.View
+            animation="pulse"
+            easing="ease-out"
+            iterationCount="infinite"
+            style={{ alignSelf: 'center', marginTop: 35 }}
           >
-            <Text style={styles.buttonText}>Let's run!</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                navigation.navigate('FirstQuestion');
+              }}
+            >
+              <Text style={styles.buttonText}>Find a route</Text>
+            </TouchableOpacity>
+          </Animatable.View>
+          <Modal
+            modalInfo={modalInfo}
+            isVisible={isModalVisible}
+            onBackdropPress={() => {
+              setModalVisible(false);
+            }}
+          >
+            <View style={styles.modalView}>
+              <MapView
+                initialRegion={modalInfo.initialRegion}
+                style={{ width: 300, height: 300, borderRadius: 10 }}
+                provider={MapView.PROVIDER_GOOGLE}
+              >
+                <Polyline
+                  coordinates={modalInfo.coordinates}
+                  strokeWidth={3}
+                  strokeColor={'#0000FF'}
+                  geodesic={true}
+                />
+                {/* <Marker coordinate={modalInfo.coordinates[0]} title={'start'} /> */}
+              </MapView>
+            </View>
+          </Modal>
         </View>
-      </SafeAreaView>
+      </View>
     );
   } else {
     return (
@@ -195,7 +288,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 1,
     elevation: 1,
-    backgroundColor: 'black',
+    backgroundColor: '#1E2022',
     borderRadius: 20,
     marginRight: 15,
     marginTop: 10,
@@ -203,7 +296,7 @@ const styles = StyleSheet.create({
 
   weatherText: {
     marginLeft: 11,
-    color: 'white',
+    color: '#f0f5f9',
     fontFamily: 'Geeza Pro',
   },
 
@@ -211,12 +304,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
-    backgroundColor: 'black',
+    backgroundColor: '#1E2022',
+
     height: 70,
     width: 345,
     margin: 10,
-    marginTop: 25,
-    shadowColor: '#000',
+    marginTop: 15,
+    shadowColor: 'grey',
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 2,
     shadowRadius: 1,
@@ -225,7 +319,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontWeight: 'bold',
     fontSize: 20,
-    color: 'white',
+    color: '#f0f5f9',
     fontFamily: 'Geeza Pro',
   },
 
@@ -237,32 +331,73 @@ const styles = StyleSheet.create({
   flatListContainer: {
     justifyContent: 'center',
     alignItems: 'flex-start',
-    margin: 15,
+    marginRight: 15,
     shadowColor: '#000',
     shadowOffset: { width: 2, height: 2 },
-    shadowOpacity: 0.5,
+    shadowOpacity: 0.3,
     shadowRadius: 1,
     elevation: 3,
-    backgroundColor: 'white',
-    borderRadius: 10,
+    backgroundColor: '#c9d6df',
+    borderRadius: 20,
     height: 300,
+    width: 150,
   },
   flatListText: {
-    margin: 5,
-    marginLeft: 30,
+    margin: 3,
+    marginTop: 4,
+    marginLeft: 10,
     fontFamily: 'Geeza Pro',
-    fontSize: 25,
-    fontWeight: '700',
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1E2022',
   },
   listHeaderText: {
+    textAlign: 'center',
     fontFamily: 'Geeza Pro',
-    fontSize: 40,
+    fontSize: 25,
     fontWeight: '800',
-    margin: 3,
-    marginLeft: 5,
+    marginTop: 8,
+    marginBottom: 3,
+    marginLeft: 8,
   },
   listHeaderContainer: {
+    backgroundColor: '#c9d6df',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+
+  totalRunContainer: {
+    justifyContent: 'center',
+    alignSelf: 'flex-end',
+    width: 150,
+    height: 150,
+    marginLeft: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    elevation: 1,
+    backgroundColor: '#1E2022',
+    borderRadius: 20,
+  },
+
+  modalView: {
+    fontFamily: 'Geeza Pro',
+    height: 400,
+    width: 350,
+    margin: 20,
     backgroundColor: 'white',
-    borderTopLeftRadius: 10,
+    borderRadius: 20,
+    padding: 30,
+    alignSelf: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });

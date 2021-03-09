@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
-    backgroundColor: 'white',
+    backgroundColor: '#F0F5F9',
     height: 125,
     width: 125,
     margin: 22,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontWeight: '800',
     fontSize: 30,
-    color: 'black',
+    color: '#1E2022',
     textAlign: 'center',
     margin: 10,
     fontFamily: 'Geeza Pro',

@@ -44,6 +44,7 @@ const FirstQuestion = ({ navigation, preferences, setPreferences }) => {
   return (
     <View style={styles.container}>
       <ImageBackground
+        resizeMode="cover"
         style={styles.image}
         source={require('../Pictures/background1.png')}
       >
@@ -90,6 +91,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerText: {
+    color: '#1E2022',
     fontWeight: 'bold',
     fontSize: 40,
     textAlign: 'center',

@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 import PlaylistDB from '../DB/PlaylistDB';
 import CustomButton from '../components/CustomButton';
-
+import { TouchableOpacity } from 'react-native';
+import * as Animatable from 'react-native-animatable';
 const BUTTONS = [
   {
     text: '😢',
@@ -64,14 +65,24 @@ const ThirdQuestion = ({
             keyExtractor={(item) => item.text}
             scrollEnabled={false}
             renderItem={({ item }) => (
-              <CustomButton
-                text={item.text}
-                handlePress={() => {
+              <TouchableOpacity
+                onPress={() => {
                   getRoute(preferences);
                   getPlaylist(item.text);
                   navigation.navigate('FinalScreen');
                 }}
-              />
+              >
+                <View style={styles.button}>
+                  <Animatable.Text
+                    animation="pulse"
+                    easing="ease-in"
+                    iterationCount="infinite"
+                    style={styles.buttonText}
+                  >
+                    {item.text}
+                  </Animatable.Text>
+                </View>
+              </TouchableOpacity>
             )}
           />
         </View>
@@ -90,6 +101,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerText: {
+    color: '#1E2022',
     fontWeight: 'bold',
     fontSize: 40,
     textAlign: 'center',
@@ -114,6 +126,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 90,
+  },
+
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    backgroundColor: '#F0F5F9',
+    height: 125,
+    width: 125,
+    margin: 22,
+    shadowColor: '#000',
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 2,
+    shadowRadius: 1,
+    elevation: 5,
+  },
+
+  buttonText: {
+    fontWeight: '800',
+    fontSize: 60,
+    color: 'black',
+    textAlign: 'center',
+    margin: 10,
+    fontFamily: 'Geeza Pro',
   },
 });
 

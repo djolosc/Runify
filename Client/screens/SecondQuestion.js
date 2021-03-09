@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerText: {
+    color: '#1E2022',
     fontWeight: 'bold',
     fontSize: 40,
     textAlign: 'center',

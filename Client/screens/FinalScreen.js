@@ -8,6 +8,7 @@ import {
   Image,
   TextInput,
   Keyboard,
+  ScrollView,
 } from 'react-native';
 import { Button, withTheme } from 'react-native-elements';
 import Modal from 'react-native-modal';
@@ -125,6 +126,7 @@ const FinalScreen = ({
             flexDirection: 'row',
             width: 325,
             justifyContent: 'space-between',
+            marginBottom: 5,
           }}
         >
           <TouchableOpacity
@@ -150,7 +152,7 @@ const FinalScreen = ({
         <View>
           <MapView
             initialRegion={runningRoute.initialRegion}
-            style={{ width: 300, height: 300, borderRadius: 5 }}
+            style={{ width: 300, height: 300, borderRadius: 10 }}
             provider={MapView.PROVIDER_GOOGLE}
           >
             <Polyline
@@ -191,7 +193,9 @@ const FinalScreen = ({
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalView}>
-            <Text>{runningRoute.description}</Text>
+            <ScrollView>
+              <Text style={styles.modalText}>{runningRoute.description}</Text>
+            </ScrollView>
           </View>
         </View>
       </Modal>
@@ -204,13 +208,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: '#1E2022',
   },
   headerText: {
     color: 'white',
-    height: 170,
+    height: 160,
     marginTop: 10,
-    marginLeft: 13,
+    marginLeft: 15,
     fontWeight: '800',
     fontSize: 40,
     textAlign: 'left',
@@ -223,7 +227,7 @@ const styles = StyleSheet.create({
     height: 90,
     flexDirection: 'row',
     marginTop: 20,
-    backgroundColor: 'black',
+    backgroundColor: '#1E2022',
     borderRadius: 20,
     alignItems: 'center',
     shadowColor: '#000',
@@ -241,6 +245,7 @@ const styles = StyleSheet.create({
   },
   playlistText: {
     marginBottom: 10,
+    color: '#F0F5F9',
     fontFamily: 'Geeza Pro',
     fontSize: 37,
     marginLeft: 7,
@@ -261,7 +266,7 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 35,
+    padding: 30,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -273,12 +278,18 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 
+  modalText: {
+    fontSize: 15,
+    fontWeight: '600',
+    textAlign: 'left',
+  },
+
   homeButton: {
     width: 100,
     height: 30,
     flexDirection: 'row',
     alignSelf: 'flex-end',
-    backgroundColor: 'white',
+    backgroundColor: '#f0f5f9',
     shadowColor: 'grey',
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.5,
@@ -288,7 +299,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 40,
-    marginRight: 15,
+    marginRight: 13,
   },
 
   homeButtonText: {
@@ -304,7 +315,7 @@ const styles = StyleSheet.create({
     width: 65,
     height: 27,
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: '#f0f5f9',
     shadowColor: '#000',
     shadowOffset: { width: 1.5, height: 1.5 },
     shadowOpacity: 0.3,
@@ -319,20 +330,19 @@ const styles = StyleSheet.create({
     fontFamily: 'Geeza Pro',
     fontSize: 18,
     marginTop: 3,
-    color: 'black',
+    color: '#1E2022',
     fontWeight: '500',
   },
 
   result: {
-    flex: 1,
+    height: 500,
     width: 350,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#f0f5f9',
     borderRadius: 20,
     marginTop: 10,
     marginBottom: 10,
-    opacity: 0.9,
   },
 });
 
