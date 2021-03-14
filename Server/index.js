@@ -18,7 +18,7 @@ app.use(router);
     await connection;
     console.log('Database is connected 🥳');
     app.listen(PORT, () => {
-      console.log(`Listening on http://localhost/${PORT} 🚀`);
+      console.log(`Listening on http://localhost:${PORT} 🚀`);
     });
   } catch (error) {
     console.log(error);

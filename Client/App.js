@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import IP from './config.js';
+import Login from './screens/Login';
 import Home from './screens/Home';
 import FirstQuestion from './screens/FirstQuestion';
 import SecondQuestion from './screens/SecondQuestion';
@@ -36,6 +37,9 @@ export default function App() {
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen name="Login" options={{ headerShown: false }}>
+            {(props) => <Login {...props} />}
+          </Stack.Screen>
           <Stack.Screen name="Home" options={{ headerShown: false }}>
             {(props) => (
               <Home

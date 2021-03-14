@@ -16,8 +16,8 @@ const create = async (req, res) => {
     const hash = await bcrypt.hash(password, 10);
     const newUser = new User({ ...req.body, password: hash });
     const { _id } = await newUser.save();
-    const accessToken = jtw.sign({ _id }, SECRET_KEY);
-    res.statue(201).send({ accessToken });
+    const accessToken = jwt.sign({ _id }, SECRET_KEY);
+    res.status(201).send({ accessToken });
   } catch (error) {
     res.status(400).send({ error, message: 'Could not create user' });
   }
@@ -27,12 +27,15 @@ const login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email: email });
-    const validatePass = await bcrypt.compare(password, user.password);
-    if (!validatePass) throw new Error();
-    const accessToken = jtw.sign({ _id }, SECRET_KEY);
+
+    const validatedPass = await bcrypt.compare(password, user.password);
+    if (!validatedPass) throw new Error();
+    const accessToken = jwt.sign({ _id: user._id }, SECRET_KEY);
     res.status(200).send({ accessToken });
   } catch (error) {
-    res.status(401).send({ error, message: 'Resource not found' });
+    res
+      .status(401)
+      .send({ error: '401', message: 'Username or password is incorrect' });
   }
 };
 

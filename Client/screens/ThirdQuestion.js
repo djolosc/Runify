@@ -7,7 +7,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import PlaylistDB from '../DB/PlaylistDB';
-import CustomButton from '../components/CustomButton';
+
 import { TouchableOpacity } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 const BUTTONS = [
