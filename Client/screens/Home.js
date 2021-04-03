@@ -141,7 +141,6 @@ export default function Home({ totalKilometers, navigation, allRoutes }) {
             </Text>
             <Text
               style={{
-                // fontWeight: '800',
                 fontSize: 20,
                 color: 'grey',
                 fontFamily: 'HelveticaNeue-Italic',
