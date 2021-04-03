@@ -49,9 +49,4 @@ const profile = async (req, res) => {
   }
 };
 
-const logout = (req, res) => {
-  // delete the token client side upon logout.
-  // you would invalidate the token here.
-};
-
-module.exports = { create, login, profile, logout };
+module.exports = { create, login, profile };
