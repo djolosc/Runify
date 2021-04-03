@@ -2,23 +2,19 @@
 Runify Belgrade
 </h1>
 
-
 Find the running route in Belgrade that suits you.
 
-:runner: :musical_note: ​Runify Belgrade lets you choose where and how long would you like to run. Based on your inputs it shows you the best path for you. It, also, creates a Spotify Playlist which matches your current mood. 
+:runner: :musical_note: ​Runify Belgrade lets you choose where and how long would you like to run. Based on your inputs it shows you the best path for you. It, also, creates a Spotify Playlist which matches your current mood.
 
 :checkered_flag: :partly_sunny: You can track your running progress as well as the current weather in Belgrade.
 
-
-
 <p align="center">
-  <img src="./client/assets/readme-pictures/pic1.png"/>
+  <img src="./Client/assets/readme-pictures/pic1.png"/>
 </p>
 
 <p align="center">
-  <img src="./client/assets/readme-pictures/pic2.png"/>
+  <img src="./Client/assets/readme-pictures/pic2.png"/>
 </p>
-
 
 ## Tech Stack
 
@@ -27,8 +23,6 @@ Find the running route in Belgrade that suits you.
 - [Node.js](https://nodejs.org/)
 - [Express](https://expressjs.com)
 - [Mongoose](https://mongoosejs.com/)
-
-  
 
 ## Getting started
 
@@ -53,4 +47,3 @@ Get yourself setup with your favourite code editor, a local Mongo DB running on 
 - Converting it to Type Script, for more readable and maintanable code
 - Improving styling
 - Deployment
-
