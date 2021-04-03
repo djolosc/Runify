@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
   Text,
-  SafeAreaView,
   ActivityIndicator,
   View,
   StyleSheet,
@@ -11,8 +10,7 @@ import {
 import Modal from 'react-native-modal';
 import * as Animatable from 'react-native-animatable';
 import IP from '../config';
-import MapView, { Polyline, Marker } from 'react-native-maps';
-
+import MapView, { Polyline } from 'react-native-maps';
 import ChanceFlurries from '../svg/chanceflurries.svg';
 import ChanceSnows from '../svg/chancesnow.svg';
 import ChanceSleet from '../svg/chancesleet.svg';
