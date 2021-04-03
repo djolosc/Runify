@@ -9,11 +9,11 @@ Find the running route in Belgrade that suits you.
 :checkered_flag: :partly_sunny: You can track your running progress as well as the current weather in Belgrade.
 
 <p align="center">
-  <img src="./Client/assets/readme-pictures/pic1.png" height="100px"/>
+  <img src="./Client/assets/readme-pictures/pic1.png" height="200px"/>
 </p>
 
 <p align="center">
-  <img src="./Client/assets/readme-pictures/pic2.png" height="100px"/>
+  <img src="./Client/assets/readme-pictures/pic2.png" height="200px"/>
 </p>
 
 ## Tech Stack
