@@ -3,6 +3,7 @@ const connection = require('./models/index');
 const router = require('./router');
 const cors = require('cors');
 const { PORT } = require('./config');
+
 const corsConfig = {
   credentials: true,
 };
