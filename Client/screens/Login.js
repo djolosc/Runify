@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   Text,
-  SafeAreaView,
-  ActivityIndicator,
   View,
   StyleSheet,
   TouchableOpacity,
@@ -114,7 +112,6 @@ const styles = StyleSheet.create({
   },
 
   loginTextContainter: {
-    // backgroundColor: 'red',
     marginTop: 70,
     marginLeft: 30,
   },
