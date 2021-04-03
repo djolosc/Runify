@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('./../Models/user.model');
-const SECRET_KEY = require('./../config') || 'this is not securee lala';
+const { SECRET_KEY } = require('./../config') || 'this is not secure';
 
 const authMiddleware = async (req, res, next) => {
   // extract token from auth headers
