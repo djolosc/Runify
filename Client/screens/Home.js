@@ -85,124 +85,30 @@ export default function Home({ totalKilometers, navigation, allRoutes }) {
     const weatherName = currentWeather.weather[0].main;
     const WeatherTag = weather[weatherName];
     return (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: '#F0F5F9',
-        }}
-      >
+      <View style={styles.containter}>
         <View style={{ marginTop: 47 }}>
           <View style={styles.weatherWidget}>
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: 'normal',
-                marginLeft: 12,
-                marginTop: 10,
-                color: 'white',
-                fontFamily: 'Geeza Pro',
-              }}
-            >
-              Belgrade
-            </Text>
-            <Text
-              style={{
-                fontSize: 45,
-                marginLeft: 12,
-                color: 'white',
-                fontFamily: 'Geeza Pro',
-              }}
-            >
+            <Text style={styles.weatherText}>Belgrade</Text>
+            <Text style={styles.weatherTextNumber}>
               {Math.round(currentWeather.main.temp)}º
             </Text>
             <WeatherTag style={{ height: 30, width: 30, marginLeft: 7 }} />
-            <Text
-              style={{
-                marginLeft: 12,
-                color: 'white',
-                fontFamily: 'Geeza Pro',
-              }}
-            >
+            <Text style={styles.weatherTextSmall}>
               {currentWeather.weather[0].description}
             </Text>
           </View>
-
           <View style={{ marginTop: 30, marginBottom: 20 }}>
-            <Text
-              style={{
-                fontWeight: '900',
-                fontSize: 40,
-                color: '#1E2022',
-                fontFamily: 'GeezaPro-Bold',
-                textAlign: 'center',
-              }}
-            >
-              RUNIFY
-            </Text>
-            <Text
-              style={{
-                fontSize: 20,
-                color: 'grey',
-                fontFamily: 'HelveticaNeue-Italic',
-                textAlign: 'center',
-              }}
-            >
-              - belgrade -
-            </Text>
+            <Text style={styles.headerText}>RUNIFY</Text>
+            <Text style={styles.headerSubText}>- belgrade -</Text>
           </View>
-
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'flex-end',
-              marginTop: 20,
-            }}
-          >
+          <View style={styles.totalRunAndFavouritesContainer}>
             <View style={styles.totalRunContainer}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignContent: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Text
-                  style={{
-                    fontFamily: 'Geeza Pro',
-                    fontSize: 90,
-                    color: 'white',
-                  }}
-                >
-                  {totalKilometers}
-                </Text>
-                <Text
-                  style={{
-                    fontFamily: 'Geeza Pro',
-                    fontSize: 20,
-                    color: 'white',
-                    alignSelf: 'flex-end',
-                    marginBottom: 20,
-                  }}
-                >
-                  km
-                </Text>
+              <View style={styles.kmContainer}>
+                <Text style={styles.kmNumber}>{totalKilometers}</Text>
+                <Text style={styles.km}>km</Text>
               </View>
-
-              <Text
-                style={{
-                  fontFamily: 'Geeza Pro',
-                  fontSize: 20,
-                  color: 'white',
-                  textAlign: 'center',
-
-                  height: '20%',
-                }}
-              >
-                total
-              </Text>
+              <Text style={styles.totalText}>total</Text>
             </View>
-
             <View style={styles.flatListContainer}>
               <View style={styles.listHeaderContainer}>
                 <Text style={styles.listHeaderText}>Favourites</Text>
@@ -260,15 +166,8 @@ export default function Home({ totalKilometers, navigation, allRoutes }) {
                   strokeColor={'#0000FF'}
                   geodesic={true}
                 />
-                {/* <Marker coordinate={modalInfo.coordinates[0]} title={'start'} /> */}
               </MapView>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'flex-start',
-                  width: 300,
-                }}
-              >
+              <View style={styles.modalDescriptionContainer}>
                 <View style={styles.modalTextContainer}>
                   <Text style={styles.modalText}>{modalInfo.routeName}</Text>
                 </View>
@@ -288,6 +187,11 @@ export default function Home({ totalKilometers, navigation, allRoutes }) {
   }
 }
 const styles = StyleSheet.create({
+  containter: {
+    flex: 1,
+    backgroundColor: '#F0F5F9',
+  },
+
   weatherWidget: {
     alignSelf: 'flex-end',
     width: 150,
@@ -304,9 +208,75 @@ const styles = StyleSheet.create({
   },
 
   weatherText: {
-    marginLeft: 11,
-    color: '#f0f5f9',
+    fontSize: 20,
+    fontWeight: 'normal',
+    marginLeft: 12,
+    marginTop: 10,
+    color: 'white',
     fontFamily: 'Geeza Pro',
+  },
+
+  weatherTextNumber: {
+    fontSize: 45,
+    marginLeft: 12,
+    color: 'white',
+    fontFamily: 'Geeza Pro',
+  },
+
+  weatherTextSmall: {
+    marginLeft: 12,
+    color: 'white',
+    fontFamily: 'Geeza Pro',
+  },
+
+  headerText: {
+    fontWeight: '900',
+    fontSize: 40,
+    color: '#1E2022',
+    fontFamily: 'GeezaPro-Bold',
+    textAlign: 'center',
+  },
+
+  headerSubText: {
+    fontSize: 20,
+    color: 'grey',
+    fontFamily: 'HelveticaNeue-Italic',
+    textAlign: 'center',
+  },
+
+  totalRunAndFavouritesContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    marginTop: 20,
+  },
+
+  kmContainer: {
+    flexDirection: 'row',
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
+
+  kmNumber: {
+    fontFamily: 'Geeza Pro',
+    fontSize: 90,
+    color: 'white',
+  },
+
+  km: {
+    fontFamily: 'Geeza Pro',
+    fontSize: 20,
+    color: 'white',
+    alignSelf: 'flex-end',
+    marginBottom: 20,
+  },
+
+  totalText: {
+    fontFamily: 'Geeza Pro',
+    fontSize: 20,
+    color: 'white',
+    textAlign: 'center',
+    height: '20%',
   },
 
   button: {
@@ -425,6 +395,12 @@ const styles = StyleSheet.create({
 
     height: 87,
     width: 240,
+  },
+
+  modalDescriptionContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    width: 300,
   },
 
   kmText: {
