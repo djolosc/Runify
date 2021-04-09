@@ -14,4 +14,22 @@ apiService.login = (user) => {
     .catch((err) => console.log(err));
 };
 
+apiService.setFavourite = (runningRoute) => {
+  return fetch(`${IP.IP}/setToTrue/${runningRoute._id}`, {
+    method: 'PUT',
+    header: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
+
+apiService.setNotFavourite = (runningRoute) => {
+  return fetch(`${IP.IP}/setToFalse/${runningRoute._id}`, {
+    method: 'PUT',
+    header: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
+
 export default apiService;

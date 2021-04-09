@@ -19,6 +19,7 @@ import HomeIcon from '../svg/home-solid.svg';
 import PaperPlane from '../svg/paper-plane-solid.svg';
 import FullHeart from '../svg/heart-solid.svg';
 import EmptyHeart from '../svg/heart-regular.svg';
+import apiService from '../ApiService';
 
 const FinalScreen = ({
   navigation,
@@ -30,26 +31,11 @@ const FinalScreen = ({
   const [isModalVisible, setModalVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [isLiked, setIsLiked] = useState(runningRoute.favourite);
-  const setFavourite = () => {
-    return fetch(`${IP.IP}/setToTrue/${runningRoute._id}`, {
-      method: 'PUT',
-      header: {
-        'Content-Type': 'application/json',
-      },
-    });
-  };
-
-  const setNotFavourite = () => {
-    return fetch(`${IP.IP}/setToFalse/${runningRoute._id}`, {
-      method: 'PUT',
-      header: {
-        'Content-Type': 'application/json',
-      },
-    });
-  };
 
   const handleSetFavourite = () => {
-    isLiked ? setNotFavourite() : setFavourite();
+    isLiked
+      ? apiService.setNotFavourite(runningRoute)
+      : apiService.setFavourite(runningRoute);
     setIsLiked(!isLiked);
     getAllRoutes();
   };
@@ -67,36 +53,13 @@ const FinalScreen = ({
         Enjoy your {runningRoute.km}km run in {runningRoute.routeName} route
       </Text>
 
-      <View
-        style={{
-          flexDirection: 'row',
-          alignContent: 'center',
-        }}
-      >
+      <View style={styles.totalRunContainer}>
         <View style={{ marginTop: 5, margin: 4 }}>
-          <Text
-            style={{
-              textAlign: 'center',
-              color: 'white',
-              fontFamily: 'Geeza Pro',
-              fontSize: 17,
-            }}
-          >
-            How long have you run today?
-          </Text>
+          <Text style={styles.totalRunText}>How long have you run today?</Text>
         </View>
         <TextInput
           placeholder="Km"
-          style={{
-            width: 50,
-            height: 30,
-            borderColor: 'gray',
-            borderWidth: 1,
-            borderRadius: 10,
-            marginLeft: 3,
-            marginRight: 3,
-            backgroundColor: 'white',
-          }}
+          style={styles.kmInput}
           onChangeText={(number) => {
             setInputValue(number);
           }}
@@ -104,11 +67,7 @@ const FinalScreen = ({
           keyboardType="decimal-pad"
         />
         <Button
-          buttonStyle={{
-            backgroundColor: 'white',
-            width: 50,
-            borderRadius: 10,
-          }}
+          buttonStyle={styles.submitButton}
           onPress={() => {
             setTotalKilometers((km) => {
               return (km = km + parseFloat(inputValue));
@@ -120,15 +79,7 @@ const FinalScreen = ({
         />
       </View>
       <View style={styles.result}>
-        <View
-          style={{
-            alignSelf: 'flex-start',
-            flexDirection: 'row',
-            width: 325,
-            justifyContent: 'space-between',
-            marginBottom: 5,
-          }}
-        >
+        <View style={styles.infoAndHeartContainer}>
           <TouchableOpacity
             style={styles.infoButton}
             onPress={() => {
@@ -170,15 +121,7 @@ const FinalScreen = ({
               Linking.openURL(playlist.url);
             }}
           >
-            <Image
-              style={{
-                width: 90,
-                height: 90,
-                borderTopLeftRadius: 20,
-                borderBottomLeftRadius: 20,
-              }}
-              source={playlist.img}
-            />
+            <Image style={styles.spotifyPlaylistImage} source={playlist.img} />
             <View style={styles.playlistTextContainer}>
               <SpotifyIcon style={{ height: 35, width: 35, marginBottom: 4 }} />
               <Text style={styles.playlistText}>playlist</Text>
@@ -222,6 +165,43 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
 
+  totalRunContainer: {
+    flexDirection: 'row',
+    alignContent: 'center',
+  },
+
+  totalRunText: {
+    textAlign: 'center',
+    color: 'white',
+    fontFamily: 'Geeza Pro',
+    fontSize: 17,
+  },
+
+  kmInput: {
+    width: 50,
+    height: 30,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 10,
+    marginLeft: 3,
+    marginRight: 3,
+    backgroundColor: 'white',
+  },
+
+  submitButton: {
+    backgroundColor: 'white',
+    width: 50,
+    borderRadius: 10,
+  },
+
+  infoAndHeartContainer: {
+    alignSelf: 'flex-start',
+    flexDirection: 'row',
+    width: 325,
+    justifyContent: 'space-between',
+    marginBottom: 5,
+  },
+
   playlist: {
     width: 300,
     height: 90,
@@ -236,6 +216,14 @@ const styles = StyleSheet.create({
     shadowRadius: 1,
     elevation: 3,
   },
+
+  spotifyPlaylistImage: {
+    width: 90,
+    height: 90,
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20,
+  },
+
   playlistTextContainer: {
     marginLeft: 22,
     marginTop: 5,
