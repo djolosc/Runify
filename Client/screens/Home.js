@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
+import apiService from '../ApiService';
 import Modal from 'react-native-modal';
 import * as Animatable from 'react-native-animatable';
 import IP from '../config';
@@ -42,18 +43,10 @@ export default function Home({ totalKilometers, navigation, allRoutes }) {
     setFavouriteRoutes(selectedRoute);
   };
 
-  const getWeather = async () => {
-    return fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=44.81540311468594&lon=20.46147372061345&appid=${IP.WEATHER_API_KEY}&units=metric`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setCurrentWeather(data);
-      });
-  };
-
   useEffect(() => {
-    getWeather();
+    apiService.getWeather().then((data) => {
+      setCurrentWeather(data);
+    });
   }, []);
 
   useEffect(() => {

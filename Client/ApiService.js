@@ -14,6 +14,16 @@ apiService.login = (user) => {
     .catch((err) => console.log(err));
 };
 
+apiService.getAllRoutes = () => {
+  return fetch(`${IP.IP}/routes`).then((res) => res.json());
+};
+
+apiService.getWeather = () => {
+  return fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=44.81540311468594&lon=20.46147372061345&appid=${IP.WEATHER_API_KEY}&units=metric`
+  ).then((res) => res.json());
+};
+
 apiService.setFavourite = (runningRoute) => {
   return fetch(`${IP.IP}/setToTrue/${runningRoute._id}`, {
     method: 'PUT',

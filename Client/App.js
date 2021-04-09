@@ -7,9 +7,9 @@ import SecondQuestion from './screens/SecondQuestion';
 import ThirdQuestion from './screens/ThirdQuestion';
 import FinalScreen from './screens/FinalScreen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import apiService from './ApiService';
 
 const Stack = createStackNavigator();
 const initialStatePreference = { km: 0, scenery: '' };
@@ -22,11 +22,9 @@ export default function App() {
   const [allRoutes, setAllRoutes] = useState([]);
 
   const getAllRoutes = () => {
-    return fetch(`${IP.IP}/routes`)
-      .then((res) => res.json())
-      .then((route) => {
-        setAllRoutes(route);
-      });
+    apiService.getAllRoutes().then((route) => {
+      setAllRoutes(route);
+    });
   };
 
   useEffect(() => {

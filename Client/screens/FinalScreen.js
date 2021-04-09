@@ -13,7 +13,6 @@ import {
 import { Button } from 'react-native-elements';
 import Modal from 'react-native-modal';
 import MapView, { Polyline, Marker } from 'react-native-maps';
-import IP from '../config';
 import SpotifyIcon from '../svg/spotify-brands.svg';
 import HomeIcon from '../svg/home-solid.svg';
 import PaperPlane from '../svg/paper-plane-solid.svg';
